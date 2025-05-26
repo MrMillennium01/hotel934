@@ -1,0 +1,557 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Hotel Neun 3/4 - Ihr freundliches Hotel in Celle</title>
+    <link href="https://fonts.cdnfonts.com/css/avenir" rel="stylesheet">
+    <style>
+        /* Basic reset / box sizing */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        /* White background for the entire website */
+        body {
+            background-color: #fff;
+            font-family: "Avenir", Helvetica, sans-serif;
+        }
+
+        /* Desktop Logo Section */
+        .logo-container {
+            text-align: center;
+        }
+
+        .logo {
+            width: 25vw;
+            max-width: 333px;
+        }
+
+        /* Hide mobile header by default (desktop view) */
+        .mobile-header {
+            display: none;
+        }
+
+        /* Sticky Top Menu: remains at the top when scrolling */
+        .top-menu {
+            width: 100%;
+            text-align: center;
+            background-color: #fff;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            /* padding-left: 2vw; */
+            /* padding-right: 2vw; */
+            padding-top: 2px;
+        }
+
+        /* Use flex layout to keep menu items in one line */
+        .top-menu ul {
+            list-style: none;
+            display: flex;
+            justify-content: center;
+            flex-wrap: nowrap;
+            align-items: center;
+            justify-content: space-between;
+            margin: 0 2vw;
+        }
+
+        /* Each menu item */
+        .top-menu li {
+            display: inline-block;
+            margin: 0 15px;
+        }
+
+        /* Menu links */
+        .top-menu a {
+            text-decoration: none;
+            color: #000;
+            font-weight: 400;
+            font-size: clamp(1rem, 1vw, 1.2rem);
+            transition: all 0.3s ease;
+            white-space: nowrap;
+        }
+
+        /* Hover effect for normal links */
+        .top-menu a:hover {
+            color: #367eff;
+        }
+
+        /* Highlight for the rightmost menu item as a rectangular button */
+        .top-menu .highlight a {
+            display: inline-flex;
+            background-color: #045184;
+            color: #fff;
+            padding: 10px 20px;
+            text-align: center;
+            border: 1px solid #045184;
+        }
+
+        /* Ensure full background for highlighted link */
+        .top-menu .highlight a {
+            display: block;
+        }
+
+        /* Hover effect for the highlighted (rightmost) link */
+        .top-menu .highlight a:hover {
+            background-color: #fff;
+            color: #000;
+            border: 1px solid #000;
+        }
+
+        /* Horizontal separator below the menu (desktop) */
+        .menu-separator {
+            width: 100%;
+            align-content: center;
+            height: 2px;
+            background-color: #000;
+            margin-top: 8px;
+        }
+
+        /* Desktop Content */
+        .content {
+            padding: 20px;
+            margin-top: 20px;
+        }
+
+        /* ---------------------------------------------- */
+        /* Mobile Styles (width below 888px) */
+        @media screen and (max-width: 888px) {
+
+            /* Hide the desktop header/logo container */
+            .logo-container {
+                display: none;
+            }
+
+            /* Enable the mobile header */
+            .mobile-header {
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                padding-top: 10px;
+                /* padding-left: 15px; */
+                padding-bottom: 0px;
+                /* padding-right: 15px; */
+                background: #fff;
+                position: fixed;
+                top: 0;
+                left: 0;
+                width: 100%;
+                z-index: 1001;
+                flex-wrap: wrap;
+            }
+
+            /* Mobile separator below header */
+            .mobile-separator {
+                flex-basis: 100%;
+                height: 2px;
+                background-color: #000;
+            }
+
+            /* Push logo to left, use mobile size */
+            .mobile-header .logo {
+                margin-left: 15px;
+                width: 50vw;
+                max-width: 200px;
+            }
+
+            /* Hamburger toggle button on the right */
+            .mobile-menu-toggle {
+                margin-right: 10px;
+                background: none;
+                border: none;
+                cursor: pointer;
+                padding: 10px;
+                z-index: 1002;
+            }
+
+            /* Hamburger icon lines */
+            .mobile-menu-toggle .bar {
+                display: block;
+                width: 25px;
+                height: 3px;
+                margin: 4px 0;
+                background-color: #000;
+                transition: all 0.3s ease;
+            }
+
+            /* Hide the original nav menu by default (we’ll slide it in) */
+            .top-menu {
+                position: fixed;
+                top: 0;
+                /* behind the mobile header */
+                right: 0;
+                width: 100%;
+                height: 100%;
+                background-color: #fff;
+                transform: translateX(100%);
+                transition: transform 0.3s ease;
+                z-index: 1000;
+            }
+
+            /* When mobile menu is active, slide in */
+            .top-menu.active {
+                transform: translateX(0);
+            }
+
+            /* In mobile, hide the menu separator inside the nav */
+            .top-menu .menu-separator {
+                display: none;
+            }
+
+            /* In mobile, show the menu items in block layout when visible */
+            .top-menu ul {
+                display: block;
+                padding: 80px 20px 20px;
+                /* give space for header and some padding */
+                text-align: center;
+            }
+
+            .top-menu li {
+                display: block;
+                margin: 15px 0;
+            }
+
+            .top-menu a {
+                display: inline-block;
+                text-align: center;
+                width: 100%;
+            }
+
+            /* Adjust page content so it doesn't hide behind the fixed mobile header */
+            .content {
+                margin-top: 60px;
+            }
+
+            /* Transform hamburger to cross when active */
+            .mobile-menu-toggle.active .bar:nth-child(1) {
+                transform: translateY(7px) rotate(45deg);
+            }
+
+            .mobile-menu-toggle.active .bar:nth-child(2) {
+                opacity: 0;
+            }
+
+            .mobile-menu-toggle.active .bar:nth-child(3) {
+                transform: translateY(-7px) rotate(-45deg);
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Desktop Header (visible on larger screens) -->
+    <header class="logo-container">
+        <a href="hotel934.de">
+            <img src="general_photos/_edited.png" alt="Logo" class="logo">
+        </a>
+    </header>
+
+    <!-- Mobile Header (visible on mobile screens) -->
+    <header class="mobile-header">
+        <img src="general_photos/_edited.png" alt="Logo" class="logo">
+        <button class="mobile-menu-toggle" aria-label="Toggle menu">
+            <span class="bar"></span>
+            <span class="bar"></span>
+            <span class="bar"></span>
+        </button>
+        <!-- Mobile Separator (only visible on mobile) -->
+        <div class="mobile-separator"></div>
+    </header>
+
+    <!-- Navigation Menu -->
+    <nav class="top-menu">
+        <ul>
+            <li><a href="#">Willkommen / Welcome</a></li>
+            <li><a href="#">Entdecken / Discover</a></li>
+            <li><a href="#">Preise / Prices</a></li>
+            <li><a href="#">Service</a></li>
+            <li><a href="#">Celle</a></li>
+            <li class="highlight"><a href="#">Anfrage / Inquiry</a></li>
+        </ul>
+        <div class="menu-separator"></div>
+    </nav>
+
+    <!-- Page content goes here -->
+
+    <div class="content">
+        <h1>Page Content</h1>
+        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla vehicula malesuada urna, eget laoreet sapien
+            dignissim at. Praesent tincidunt, sem in hendrerit condimentum, massa lacus pulvinar magna, eget convallis
+            mauris magna eget lectus. Sed ac vestibulum ligula. Quisque vehicula elit ut justo dignissim, at tempor elit
+            feugiat. Duis tincidunt libero non nisi faucibus, nec facilisis tortor suscipit. Vestibulum ante ipsum
+            primis in faucibus orci luctus et ultrices posuere cubilia curae; Phasellus faucibus, metus et porttitor
+            maximus, libero orci bibendum urna, non sollicitudin odio turpis nec nulla. Vivamus blandit efficitur
+            mauris, vitae ultrices purus cursus vitae. Aenean et ex convallis, faucibus ligula eget, fermentum felis.
+            Praesent ac massa vitae eros interdum gravida Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla
+            vehicula malesuada urna, eget laoreet sapien. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla
+            vehicula malesuada urna, eget laoreet sapien.
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla vehicula malesuada urna, eget laoreet sapien
+            dignissim at. Praesent tincidunt, sem in hendrerit condimentum, massa lacus pulvinar magna, eget convallis
+            mauris magna eget lectus. Sed ac vestibulum ligula. Quisque vehicula elit ut justo dignissim, at tempor elit
+            feugiat. Duis tincidunt libero non nisi faucibus, nec facilisis tortor suscipit. Vestibulum ante ipsum
+            primis in faucibus orci luctus et ultrices posuere cubilia curae; Phasellus faucibus, metus et porttitor
+            maximus, libero orci bibendum urna, non sollicitudin odio turpis nec nulla. Vivamus blandit efficitur
+            mauris, vitae ultrices purus cursus vitae. Aenean et ex convallis, faucibus ligula eget, fermentum felis.
+            Praesent ac massa vitae eros interdum gravida Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla
+            vehicula malesuada urna, eget laoreet sapien. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla
+            vehicula malesuada urna, eget laoreet sapien.Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla
+            vehicula malesuada urna, eget laoreet sapien
+            dignissim at. Praesent tincidunt, sem in hendrerit condimentum, massa lacus pulvinar magna, eget convallis
+            mauris magna eget lectus. Sed ac vestibulum ligula. Quisque vehicula elit ut justo dignissim, at tempor elit
+            feugiat. Duis tincidunt libero non nisi faucibus, nec facilisis tortor suscipit. Vestibulum ante ipsum
+            primis in faucibus orci luctus et ultrices posuere cubilia curae; Phasellus faucibus, metus et porttitor
+            maximus, libero orci bibendum urna, non sollicitudin odio turpis nec nulla. Vivamus blandit efficitur
+            mauris, vitae ultrices purus cursus vitae. Aenean et ex convallis, faucibus ligula eget, fermentum felis.
+            Praesent ac massa vitae eros interdum gravida Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla
+            vehicula malesuada urna, eget laoreet sapien. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla
+            vehicula malesuada urna, eget laoreet sapien.Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla
+            vehicula malesuada urna, eget laoreet sapien
+            dignissim at. Praesent tincidunt, sem in hendrerit condimentum, massa lacus pulvinar magna, eget convallis
+            mauris magna eget lectus. Sed ac vestibulum ligula. Quisque vehicula elit ut justo dignissim, at tempor elit
+            feugiat. Duis tincidunt libero non nisi faucibus, nec facilisis tortor suscipit. Vestibulum ante ipsum
+            primis in faucibus orci luctus et ultrices posuere cubilia curae; Phasellus faucibus, metus et porttitor
+            maximus, libero orci bibendum urna, non sollicitudin odio turpis nec nulla. Vivamus blandit efficitur
+            mauris, vitae ultrices purus cursus vitae. Aenean et ex convallis, faucibus ligula eget, fermentum felis.
+            Praesent ac massa vitae eros interdum gravida Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla
+            vehicula malesuada urna, eget laoreet sapien. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla
+            vehicula malesuada urna, eget laoreet sapien.Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla
+            vehicula malesuada urna, eget laoreet sapien
+            dignissim at. Praesent tincidunt, sem in hendrerit condimentum, massa lacus pulvinar magna, eget convallis
+            mauris magna eget lectus. Sed ac vestibulum ligula. Quisque vehicula elit ut justo dignissim, at tempor elit
+            feugiat. Duis tincidunt libero non nisi faucibus, nec facilisis tortor suscipit. Vestibulum ante ipsum
+            primis in faucibus orci luctus et ultrices posuere cubilia curae; Phasellus faucibus, metus et porttitor
+            maximus, libero orci bibendum urna, non sollicitudin odio turpis nec nulla. Vivamus blandit efficitur
+            mauris, vitae ultrices purus cursus vitae. Aenean et ex convallis, faucibus ligula eget, fermentum felis.
+            Praesent ac massa vitae eros interdum gravida Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla
+            vehicula malesuada urna, eget laoreet sapien. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla
+            vehicula malesuada urna, eget laoreet sapien.Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla
+            vehicula malesuada urna, eget laoreet sapien
+            dignissim at. Praesent tincidunt, sem in hendrerit condimentum, massa lacus pulvinar magna, eget convallis
+            mauris magna eget lectus. Sed ac vestibulum ligula. Quisque vehicula elit ut justo dignissim, at tempor elit
+            feugiat. Duis tincidunt libero non nisi faucibus, nec facilisis tortor suscipit. Vestibulum ante ipsum
+            primis in faucibus orci luctus et ultrices posuere cubilia curae; Phasellus faucibus, metus et porttitor
+            maximus, libero orci bibendum urna, non sollicitudin odio turpis nec nulla. Vivamus blandit efficitur
+            mauris, vitae ultrices purus cursus vitae. Aenean et ex convallis, faucibus ligula eget, fermentum felis.
+            Praesent ac massa vitae eros interdum gravida Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla
+            vehicula malesuada urna, eget laoreet sapien. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla
+            vehicula malesuada urna, eget laoreet sapien.Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla
+            vehicula malesuada urna, eget laoreet sapien
+            dignissim at. Praesent tincidunt, sem in hendrerit condimentum, massa lacus pulvinar magna, eget convallis
+            mauris magna eget lectus. Sed ac vestibulum ligula. Quisque vehicula elit ut justo dignissim, at tempor elit
+            feugiat. Duis tincidunt libero non nisi faucibus, nec facilisis tortor suscipit. Vestibulum ante ipsum
+            primis in faucibus orci luctus et ultrices posuere cubilia curae; Phasellus faucibus, metus et porttitor
+            maximus, libero orci bibendum urna, non sollicitudin odio turpis nec nulla. Vivamus blandit efficitur
+            mauris, vitae ultrices purus cursus vitae. Aenean et ex convallis, faucibus ligula eget, fermentum felis.
+            Praesent ac massa vitae eros interdum gravida Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla
+            vehicula malesuada urna, eget laoreet sapien. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla
+            vehicula malesuada urna, eget laoreet sapien.Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla
+            vehicula malesuada urna, eget laoreet sapien
+            dignissim at. Praesent tincidunt, sem in hendrerit condimentum, massa lacus pulvinar magna, eget convallis
+            mauris magna eget lectus. Sed ac vestibulum ligula. Quisque vehicula elit ut justo dignissim, at tempor elit
+            feugiat. Duis tincidunt libero non nisi faucibus, nec facilisis tortor suscipit. Vestibulum ante ipsum
+            primis in faucibus orci luctus et ultrices posuere cubilia curae; Phasellus faucibus, metus et porttitor
+            maximus, libero orci bibendum urna, non sollicitudin odio turpis nec nulla. Vivamus blandit efficitur
+            mauris, vitae ultrices purus cursus vitae. Aenean et ex convallis, faucibus ligula eget, fermentum felis.
+            Praesent ac massa vitae eros interdum gravida Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla
+            vehicula malesuada urna, eget laoreet sapien. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla
+            vehicula malesuada urna, eget laoreet sapien.Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla
+            vehicula malesuada urna, eget laoreet sapien
+            dignissim at. Praesent tincidunt, sem in hendrerit condimentum, massa lacus pulvinar magna, eget convallis
+            mauris magna eget lectus. Sed ac vestibulum ligula. Quisque vehicula elit ut justo dignissim, at tempor elit
+            feugiat. Duis tincidunt libero non nisi faucibus, nec facilisis tortor suscipit. Vestibulum ante ipsum
+            primis in faucibus orci luctus et ultrices posuere cubilia curae; Phasellus faucibus, metus et porttitor
+            maximus, libero orci bibendum urna, non sollicitudin odio turpis nec nulla. Vivamus blandit efficitur
+            mauris, vitae ultrices purus cursus vitae. Aenean et ex convallis, faucibus ligula eget, fermentum felis.
+            Praesent ac massa vitae eros interdum gravida Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla
+            vehicula malesuada urna, eget laoreet sapien. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla
+            vehicula malesuada urna, eget laoreet sapien.Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla
+            vehicula malesuada urna, eget laoreet sapien
+            dignissim at. Praesent tincidunt, sem in hendrerit condimentum, massa lacus pulvinar magna, eget convallis
+            mauris magna eget lectus. Sed ac vestibulum ligula. Quisque vehicula elit ut justo dignissim, at tempor elit
+            feugiat. Duis tincidunt libero non nisi faucibus, nec facilisis tortor suscipit. Vestibulum ante ipsum
+            primis in faucibus orci luctus et ultrices posuere cubilia curae; Phasellus faucibus, metus et porttitor
+            maximus, libero orci bibendum urna, non sollicitudin odio turpis nec nulla. Vivamus blandit efficitur
+            mauris, vitae ultrices purus cursus vitae. Aenean et ex convallis, faucibus ligula eget, fermentum felis.
+            Praesent ac massa vitae eros interdum gravida Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla
+            vehicula malesuada urna, eget laoreet sapien. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla
+            vehicula malesuada urna, eget laoreet sapien.Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla
+            vehicula malesuada urna, eget laoreet sapien
+            dignissim at. Praesent tincidunt, sem in hendrerit condimentum, massa lacus pulvinar magna, eget convallis
+            mauris magna eget lectus. Sed ac vestibulum ligula. Quisque vehicula elit ut justo dignissim, at tempor elit
+            feugiat. Duis tincidunt libero non nisi faucibus, nec facilisis tortor suscipit. Vestibulum ante ipsum
+            primis in faucibus orci luctus et ultrices posuere cubilia curae; Phasellus faucibus, metus et porttitor
+            maximus, libero orci bibendum urna, non sollicitudin odio turpis nec nulla. Vivamus blandit efficitur
+            mauris, vitae ultrices purus cursus vitae. Aenean et ex convallis, faucibus ligula eget, fermentum felis.
+            Praesent ac massa vitae eros interdum gravida Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla
+            vehicula malesuada urna, eget laoreet sapien. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla
+            vehicula malesuada urna, eget laoreet sapien.Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla
+            vehicula malesuada urna, eget laoreet sapien
+            dignissim at. Praesent tincidunt, sem in hendrerit condimentum, massa lacus pulvinar magna, eget convallis
+            mauris magna eget lectus. Sed ac vestibulum ligula. Quisque vehicula elit ut justo dignissim, at tempor elit
+            feugiat. Duis tincidunt libero non nisi faucibus, nec facilisis tortor suscipit. Vestibulum ante ipsum
+            primis in faucibus orci luctus et ultrices posuere cubilia curae; Phasellus faucibus, metus et porttitor
+            maximus, libero orci bibendum urna, non sollicitudin odio turpis nec nulla. Vivamus blandit efficitur
+            mauris, vitae ultrices purus cursus vitae. Aenean et ex convallis, faucibus ligula eget, fermentum felis.
+            Praesent ac massa vitae eros interdum gravida Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla
+            vehicula malesuada urna, eget laoreet sapien. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla
+            vehicula malesuada urna, eget laoreet sapien.Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla
+            vehicula malesuada urna, eget laoreet sapien
+            dignissim at. Praesent tincidunt, sem in hendrerit condimentum, massa lacus pulvinar magna, eget convallis
+            mauris magna eget lectus. Sed ac vestibulum ligula. Quisque vehicula elit ut justo dignissim, at tempor elit
+            feugiat. Duis tincidunt libero non nisi faucibus, nec facilisis tortor suscipit. Vestibulum ante ipsum
+            primis in faucibus orci luctus et ultrices posuere cubilia curae; Phasellus faucibus, metus et porttitor
+            maximus, libero orci bibendum urna, non sollicitudin odio turpis nec nulla. Vivamus blandit efficitur
+            mauris, vitae ultrices purus cursus vitae. Aenean et ex convallis, faucibus ligula eget, fermentum felis.
+            Praesent ac massa vitae eros interdum gravida Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla
+            vehicula malesuada urna, eget laoreet sapien. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla
+            vehicula malesuada urna, eget laoreet sapien.Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla
+            vehicula malesuada urna, eget laoreet sapien
+            dignissim at. Praesent tincidunt, sem in hendrerit condimentum, massa lacus pulvinar magna, eget convallis
+            mauris magna eget lectus. Sed ac vestibulum ligula. Quisque vehicula elit ut justo dignissim, at tempor elit
+            feugiat. Duis tincidunt libero non nisi faucibus, nec facilisis tortor suscipit. Vestibulum ante ipsum
+            primis in faucibus orci luctus et ultrices posuere cubilia curae; Phasellus faucibus, metus et porttitor
+            maximus, libero orci bibendum urna, non sollicitudin odio turpis nec nulla. Vivamus blandit efficitur
+            mauris, vitae ultrices purus cursus vitae. Aenean et ex convallis, faucibus ligula eget, fermentum felis.
+            Praesent ac massa vitae eros interdum gravida Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla
+            vehicula malesuada urna, eget laoreet sapien. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla
+            vehicula malesuada urna, eget laoreet sapien.Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla
+            vehicula malesuada urna, eget laoreet sapien
+            dignissim at. Praesent tincidunt, sem in hendrerit condimentum, massa lacus pulvinar magna, eget convallis
+            mauris magna eget lectus. Sed ac vestibulum ligula. Quisque vehicula elit ut justo dignissim, at tempor elit
+            feugiat. Duis tincidunt libero non nisi faucibus, nec facilisis tortor suscipit. Vestibulum ante ipsum
+            primis in faucibus orci luctus et ultrices posuere cubilia curae; Phasellus faucibus, metus et porttitor
+            maximus, libero orci bibendum urna, non sollicitudin odio turpis nec nulla. Vivamus blandit efficitur
+            mauris, vitae ultrices purus cursus vitae. Aenean et ex convallis, faucibus ligula eget, fermentum felis.
+            Praesent ac massa vitae eros interdum gravida Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla
+            vehicula malesuada urna, eget laoreet sapien. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla
+            vehicula malesuada urna, eget laoreet sapien.Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla
+            vehicula malesuada urna, eget laoreet sapien
+            dignissim at. Praesent tincidunt, sem in hendrerit condimentum, massa lacus pulvinar magna, eget convallis
+            mauris magna eget lectus. Sed ac vestibulum ligula. Quisque vehicula elit ut justo dignissim, at tempor elit
+            feugiat. Duis tincidunt libero non nisi faucibus, nec facilisis tortor suscipit. Vestibulum ante ipsum
+            primis in faucibus orci luctus et ultrices posuere cubilia curae; Phasellus faucibus, metus et porttitor
+            maximus, libero orci bibendum urna, non sollicitudin odio turpis nec nulla. Vivamus blandit efficitur
+            mauris, vitae ultrices purus cursus vitae. Aenean et ex convallis, faucibus ligula eget, fermentum felis.
+            Praesent ac massa vitae eros interdum gravida Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla
+            vehicula malesuada urna, eget laoreet sapien. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla
+            vehicula malesuada urna, eget laoreet sapien.Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla
+            vehicula malesuada urna, eget laoreet sapien
+            dignissim at. Praesent tincidunt, sem in hendrerit condimentum, massa lacus pulvinar magna, eget convallis
+            mauris magna eget lectus. Sed ac vestibulum ligula. Quisque vehicula elit ut justo dignissim, at tempor elit
+            feugiat. Duis tincidunt libero non nisi faucibus, nec facilisis tortor suscipit. Vestibulum ante ipsum
+            primis in faucibus orci luctus et ultrices posuere cubilia curae; Phasellus faucibus, metus et porttitor
+            maximus, libero orci bibendum urna, non sollicitudin odio turpis nec nulla. Vivamus blandit efficitur
+            mauris, vitae ultrices purus cursus vitae. Aenean et ex convallis, faucibus ligula eget, fermentum felis.
+            Praesent ac massa vitae eros interdum gravida Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla
+            vehicula malesuada urna, eget laoreet sapien. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla
+            vehicula malesuada urna, eget laoreet sapien.Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla
+            vehicula malesuada urna, eget laoreet sapien
+            dignissim at. Praesent tincidunt, sem in hendrerit condimentum, massa lacus pulvinar magna, eget convallis
+            mauris magna eget lectus. Sed ac vestibulum ligula. Quisque vehicula elit ut justo dignissim, at tempor elit
+            feugiat. Duis tincidunt libero non nisi faucibus, nec facilisis tortor suscipit. Vestibulum ante ipsum
+            primis in faucibus orci luctus et ultrices posuere cubilia curae; Phasellus faucibus, metus et porttitor
+            maximus, libero orci bibendum urna, non sollicitudin odio turpis nec nulla. Vivamus blandit efficitur
+            mauris, vitae ultrices purus cursus vitae. Aenean et ex convallis, faucibus ligula eget, fermentum felis.
+            Praesent ac massa vitae eros interdum gravida Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla
+            vehicula malesuada urna, eget laoreet sapien. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla
+            vehicula malesuada urna, eget laoreet sapien.Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla
+            vehicula malesuada urna, eget laoreet sapien
+            dignissim at. Praesent tincidunt, sem in hendrerit condimentum, massa lacus pulvinar magna, eget convallis
+            mauris magna eget lectus. Sed ac vestibulum ligula. Quisque vehicula elit ut justo dignissim, at tempor elit
+            feugiat. Duis tincidunt libero non nisi faucibus, nec facilisis tortor suscipit. Vestibulum ante ipsum
+            primis in faucibus orci luctus et ultrices posuere cubilia curae; Phasellus faucibus, metus et porttitor
+            maximus, libero orci bibendum urna, non sollicitudin odio turpis nec nulla. Vivamus blandit efficitur
+            mauris, vitae ultrices purus cursus vitae. Aenean et ex convallis, faucibus ligula eget, fermentum felis.
+            Praesent ac massa vitae eros interdum gravida Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla
+            vehicula malesuada urna, eget laoreet sapien. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla
+            vehicula malesuada urna, eget laoreet sapien.Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla
+            vehicula malesuada urna, eget laoreet sapien
+            dignissim at. Praesent tincidunt, sem in hendrerit condimentum, massa lacus pulvinar magna, eget convallis
+            mauris magna eget lectus. Sed ac vestibulum ligula. Quisque vehicula elit ut justo dignissim, at tempor elit
+            feugiat. Duis tincidunt libero non nisi faucibus, nec facilisis tortor suscipit. Vestibulum ante ipsum
+            primis in faucibus orci luctus et ultrices posuere cubilia curae; Phasellus faucibus, metus et porttitor
+            maximus, libero orci bibendum urna, non sollicitudin odio turpis nec nulla. Vivamus blandit efficitur
+            mauris, vitae ultrices purus cursus vitae. Aenean et ex convallis, faucibus ligula eget, fermentum felis.
+            Praesent ac massa vitae eros interdum gravida Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla
+            vehicula malesuada urna, eget laoreet sapien. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla
+            vehicula malesuada urna, eget laoreet sapien.Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla
+            vehicula malesuada urna, eget laoreet sapien
+            dignissim at. Praesent tincidunt, sem in hendrerit condimentum, massa lacus pulvinar magna, eget convallis
+            mauris magna eget lectus. Sed ac vestibulum ligula. Quisque vehicula elit ut justo dignissim, at tempor elit
+            feugiat. Duis tincidunt libero non nisi faucibus, nec facilisis tortor suscipit. Vestibulum ante ipsum
+            primis in faucibus orci luctus et ultrices posuere cubilia curae; Phasellus faucibus, metus et porttitor
+            maximus, libero orci bibendum urna, non sollicitudin odio turpis nec nulla. Vivamus blandit efficitur
+            mauris, vitae ultrices purus cursus vitae. Aenean et ex convallis, faucibus ligula eget, fermentum felis.
+            Praesent ac massa vitae eros interdum gravida Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla
+            vehicula malesuada urna, eget laoreet sapien. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla
+            vehicula malesuada urna, eget laoreet sapien.Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla
+            vehicula malesuada urna, eget laoreet sapien
+            dignissim at. Praesent tincidunt, sem in hendrerit condimentum, massa lacus pulvinar magna, eget convallis
+            mauris magna eget lectus. Sed ac vestibulum ligula. Quisque vehicula elit ut justo dignissim, at tempor elit
+            feugiat. Duis tincidunt libero non nisi faucibus, nec facilisis tortor suscipit. Vestibulum ante ipsum
+            primis in faucibus orci luctus et ultrices posuere cubilia curae; Phasellus faucibus, metus et porttitor
+            maximus, libero orci bibendum urna, non sollicitudin odio turpis nec nulla. Vivamus blandit efficitur
+            mauris, vitae ultrices purus cursus vitae. Aenean et ex convallis, faucibus ligula eget, fermentum felis.
+            Praesent ac massa vitae eros interdum gravida Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla
+            vehicula malesuada urna, eget laoreet sapien. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla
+            vehicula malesuada urna, eget laoreet sapien.Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla
+            vehicula malesuada urna, eget laoreet sapien
+            dignissim at. Praesent tincidunt, sem in hendrerit condimentum, massa lacus pulvinar magna, eget convallis
+            mauris magna eget lectus. Sed ac vestibulum ligula. Quisque vehicula elit ut justo dignissim, at tempor elit
+            feugiat. Duis tincidunt libero non nisi faucibus, nec facilisis tortor suscipit. Vestibulum ante ipsum
+            primis in faucibus orci luctus et ultrices posuere cubilia curae; Phasellus faucibus, metus et porttitor
+            maximus, libero orci bibendum urna, non sollicitudin odio turpis nec nulla. Vivamus blandit efficitur
+            mauris, vitae ultrices purus cursus vitae. Aenean et ex convallis, faucibus ligula eget, fermentum felis.
+            Praesent ac massa vitae eros interdum gravida Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla
+            vehicula malesuada urna, eget laoreet sapien. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla
+            vehicula malesuada urna, eget laoreet sapien.Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla
+            vehicula malesuada urna, eget laoreet sapien
+            dignissim at. Praesent tincidunt, sem in hendrerit condimentum, massa lacus pulvinar magna, eget convallis
+            mauris magna eget lectus. Sed ac vestibulum ligula. Quisque vehicula elit ut justo dignissim, at tempor elit
+            feugiat. Duis tincidunt libero non nisi faucibus, nec facilisis tortor suscipit. Vestibulum ante ipsum
+            primis in faucibus orci luctus et ultrices posuere cubilia curae; Phasellus faucibus, metus et porttitor
+            maximus, libero orci bibendum urna, non sollicitudin odio turpis nec nulla. Vivamus blandit efficitur
+            mauris, vitae ultrices purus cursus vitae. Aenean et ex convallis, faucibus ligula eget, fermentum felis.
+            Praesent ac massa vitae eros interdum gravida Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla
+            vehicula malesuada urna, eget laoreet sapien. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla
+            vehicula malesuada urna, eget laoreet sapien.Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla
+            vehicula malesuada urna, eget laoreet sapien
+            dignissim at. Praesent tincidunt, sem in hendrerit condimentum, massa lacus pulvinar magna, eget convallis
+            mauris magna eget lectus. Sed ac vestibulum ligula. Quisque vehicula elit ut justo dignissim, at tempor elit
+            feugiat. Duis tincidunt libero non nisi faucibus, nec facilisis tortor suscipit. Vestibulum ante ipsum
+            primis in faucibus orci luctus et ultrices posuere cubilia curae; Phasellus faucibus, metus et porttitor
+            maximus, libero orci bibendum urna, non sollicitudin odio turpis nec nulla. Vivamus blandit efficitur
+            mauris, vitae ultrices purus cursus vitae. Aenean et ex convallis, faucibus ligula eget, fermentum felis.
+            Praesent ac massa vitae eros interdum gravida Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla
+            vehicula malesuada urna, eget laoreet sapien. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla
+            vehicula malesuada urna, eget laoreet sapien.Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla
+            vehicula malesuada urna, eget laoreet sapien
+            dignissim at. Praesent tincidunt, sem in hendrerit condimentum, massa lacus pulvinar magna, eget convallis
+            mauris magna eget lectus. Sed ac vestibulum ligula. Quisque vehicula elit ut justo dignissim, at tempor elit
+            feugiat. Duis tincidunt libero non nisi faucibus, nec facilisis tortor suscipit. Vestibulum ante ipsum
+            primis in faucibus orci luctus et ultrices posuere cubilia curae; Phasellus faucibus, metus et porttitor
+            maximus, libero orci bibendum urna, non sollicitudin odio turpis nec nulla. Vivamus blandit efficitur
+            mauris, vitae ultrices purus cursus vitae. Aenean et ex convallis, faucibus ligula eget, fermentum felis.
+            Praesent ac massa vitae eros interdum gravida Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla
+            vehicula malesuada urna, eget laoreet sapien. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla
+            vehicula malesuada urna, eget laoreet sapien.</p>
+    </div>
+
+    <script>
+        // Mobile menu toggle functionality
+        const toggleButton = document.querySelector('.mobile-menu-toggle');
+        const mobileMenu = document.querySelector('.top-menu');
+
+        toggleButton.addEventListener('click', function () {
+            // Toggle the active class on both the menu and the toggle button
+            mobileMenu.classList.toggle('active');
+            toggleButton.classList.toggle('active');
+        });
+    </script>
+</body>
+
+</html>

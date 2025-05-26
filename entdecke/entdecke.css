@@ -1,0 +1,45 @@
+.description-section {
+    display: flex;
+    justify-content: space-around;
+    gap: 20px;
+}
+
+.picture-hotel {
+    order: 1;
+    width: 301px;
+    height: 415px;
+}
+
+.headlines {
+    order: 2;
+    display: flex;
+    flex-direction: column;
+    background-color: #045184;
+    width: 800px;
+    height: 415px;
+    padding-left: 10px;
+    padding-right: 10px;
+    justify-content: space-between;
+}
+
+.german-headline {
+    order: 1;
+    margin-right: 20px;
+}
+
+.english-headline {
+    order: 2;
+    margin-left: 20px;
+}
+
+.description-english {
+    color: #045184;
+}
+
+.description-german {
+    color: black;
+}
+
+.descriptions {
+    order: 3;
+}

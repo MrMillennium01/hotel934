@@ -1,0 +1,99 @@
+:root {
+    --theme-blue: #045184;
+    --text-color: #000;
+    --font-family: "Avenir", Helvetica, sans-serif;
+}
+
+
+body {
+    font-family: "Avenir", Helvetica, sans-serif;
+    background: #fff;
+    margin: 0;
+    padding: 20px;
+
+    .container {
+        max-width: 900px;
+        margin: 0 auto;
+        background: #fff;
+        padding: 20px;
+        border-radius: 4px;
+
+        h1 {
+            font-size: 1.75rem;
+            margin-bottom: 1rem;
+        }
+
+        form {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+
+            label {
+                font-weight: bold;
+                display: block;
+                margin-bottom: 4px;
+            }
+
+            input,
+            select,
+            textarea {
+                width: 100%;
+                padding: 8px;
+                font-size: 1rem;
+                border: 1px solid #ccc;
+                border-radius: 2px;
+                box-sizing: border-box;
+            }
+
+            .full-width {
+                grid-column: 1 / -1;
+            }
+
+            .button-area {
+                grid-column: 1 / -1;
+                text-align: right;
+
+                button {
+                    background: var(--theme-blue);
+                    color: #fff;
+                    border: 1px solid var(--theme-blue);
+                    padding: 12px 24px;
+                    font-size: 1rem;
+                    cursor: pointer;
+
+                    &:hover {
+                        background-color: #fff;
+                        border-color: #000;
+                        color: #000;
+                    }
+                }
+            }
+        }
+    }
+}
+
+.modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.6);
+    display: none;
+    align-items: center;
+    justify-content: center;
+
+    .modal-content {
+        background: #fff;
+        padding: 20px;
+        max-width: 400px;
+        width: 100%;
+        border-radius: 4px;
+        text-align: center;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+
+        button {
+            margin-top: 20px;
+        }
+    }
+}

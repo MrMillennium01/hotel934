@@ -1,0 +1,806 @@
+<!DOCTYPE html>
+<html lang="de" lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://fonts.cdnfonts.com/css/avenir" rel="stylesheet">
+    <title>Preise / Prices</title>
+    <style>
+        :root {
+            --theme-blue: #045184;
+            --text-color: #000;
+            --font-family: "Avenir", Helvetica, sans-serif;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: var(--font-family);
+            color: var(--text-color);
+            background: #fff;
+            line-height: 1.6;
+            font-size: clamp(1rem, 1vw, 1.2rem);
+            overflow-x: hidden;
+            /* Prevent horizontal scrolling */
+        }
+
+        .hero {
+            display: flex;
+            flex-wrap: wrap;
+            /* Ensure content wraps on narrow screens */
+            align-items: stretch;
+            margin: none;
+
+            .hero-text {
+                flex: 1 3 0;
+                background: var(--theme-blue);
+                color: #fff;
+                padding: 40px 20px;
+                text-align: center;
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+
+                h1 {
+                    font-size: clamp(2.0736rem, 2.0736vw, 2.4883rem);
+                    margin-bottom: 0.5rem;
+                }
+
+                h2 {
+                    font-size: clamp(1.728rem, 1.728vw, 2.0736rem);
+                }
+            }
+
+            .hero-image {
+                flex: 3 3 0;
+                text-align: center;
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+
+                img {
+                    display: block;
+                    width: 100%;
+                    height: 100%;
+                    object-fit: cover;
+                    margin: -12% 0;
+                }
+            }
+        }
+
+        .content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: clamp(30px, 5vw, 60px);
+            padding: clamp(20px, 2vw, 40px) clamp(20px, 5vw, 60px);
+            /* Adjust padding for better spacing */
+
+            .column {
+                background: #fff;
+                padding: 0px;
+
+                h3 {
+                    color: var(--theme-blue);
+                    font-size: clamp(1.44rem, 1.44vw, 1.728rem);
+                    margin-bottom: -0.5rem;
+                }
+
+                h4 {
+                    color: var(--theme-blue);
+                    font-size: clamp(1.2rem, 1.2vw, 1.44rem);
+                    margin-bottom: 0.9rem;
+                }
+
+                p {
+                    font-size: clamp(1rem, 1vw, 1.2rem);
+                    margin-bottom: 1rem;
+                }
+
+                ul {
+                    padding-left: 20px;
+                    margin-bottom: 1rem;
+                }
+
+                table {
+                    width: 100%;
+                    border-collapse: collapse;
+                    margin-top: 10px;
+                    margin-bottom: 20px;
+
+                    th,
+                    td {
+                        padding: 8px 5px;
+                        text-align: left;
+                        border-bottom: 1px solid #ccc;
+
+                        &:last-child {
+                            text-align: right;
+                        }
+                    }
+                }
+
+                .grey {
+                    color: #888888;
+
+                    h4 {
+                        color: #888888;
+                    }
+
+                    .cards {
+                        display: flex;
+                        gap: 10px;
+                        align-items: center;
+                        margin-top: 20px;
+                        margin-bottom: 20px;
+
+                        img {
+                            height: 32px;
+                            width: auto;
+                        }
+                    }
+                }
+            }
+        }
+
+        hr {
+            border: none;
+            border-top: 1px solid #000;
+            margin: 0px 5px;
+        }
+
+        @media (max-width: 700px) {
+            .hero {
+
+                .hero-text,
+                .hero-image {
+                    flex: 1 1 100%;
+                    flex-direction: column;
+                    /* Stack hero-text and hero-image vertically */
+                }
+            }
+
+            .content {
+                padding: 15px 10px;
+                /* Add margin for narrow screens */
+                gap: 0px;
+                grid-template-columns: 1fr;
+                /* Ensure single-column layout */
+
+                .column {
+                    h3 {
+                        color: var(--theme-blue);
+                        font-size: clamp(1.44rem, 1.44vw, 1.728rem);
+                        line-height: 0.9;
+                    }
+
+                    h4 {
+                        color: var(--theme-blue);
+                        font-size: clamp(1.2rem, 1.2vw, 1.44rem);
+                        margin-top: 1rem;
+                        margin-bottom: 0.9rem;
+                        line-height: 1;
+                    }
+                }
+            }
+        }
+
+        /* for top-menu */
+
+        /* Desktop Logo Section */
+        .logo-container {
+            text-align: center;
+        }
+
+        .logo {
+            width: 25vw;
+            max-width: 333px;
+        }
+
+        /* Hide mobile header by default (desktop view) */
+        .mobile-header {
+            display: none;
+        }
+
+        /* Sticky Top Menu: remains at the top when scrolling */
+        .top-menu {
+            width: 100%;
+            text-align: center;
+            background-color: #fff;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            /* padding-left: 2vw; */
+            /* padding-right: 2vw; */
+            padding-top: 2px;
+        }
+
+        /* Use flex layout to keep menu items in one line */
+        .top-menu ul {
+            list-style: none;
+            display: flex;
+            justify-content: center;
+            flex-wrap: nowrap;
+            align-items: center;
+            justify-content: space-between;
+            margin: 0 2vw;
+        }
+
+        /* Each menu item */
+        .top-menu li {
+            display: inline-block;
+            margin: 0 15px;
+        }
+
+        /* Menu links */
+        .top-menu a {
+            text-decoration: none;
+            color: #000;
+            font-weight: 500;
+            font-size: clamp(1rem, 1vw, 1.2rem);
+            transition: all 0.3s ease;
+            white-space: nowrap;
+        }
+
+        /* Hover effect for normal links */
+        .top-menu a:hover {
+            color: #367eff;
+        }
+
+        /* Highlight for the rightmost menu item as a rectangular button */
+        .top-menu .highlight a {
+            display: inline-flex;
+            background-color: #045184;
+            color: #fff;
+            padding: 10px 20px;
+            text-align: center;
+            border: 1px solid #045184;
+        }
+
+        /* Ensure full background for highlighted link */
+        .top-menu .highlight a {
+            display: block;
+        }
+
+        /* Hover effect for the highlighted (rightmost) link */
+        .top-menu .highlight a:hover {
+            background-color: #fff;
+            color: #000;
+            border: 1px solid #000;
+        }
+
+        /* Horizontal separator below the menu (desktop) */
+        .menu-separator {
+            width: 100%;
+            align-content: center;
+            height: 2px;
+            background-color: #000;
+            margin-top: 8px;
+        }
+
+        /* ---------------------------------------------- */
+        /* Mobile Styles (width below 888px) */
+        @media screen and (max-width: 888px) {
+
+            /* Hide the desktop header/logo container */
+            .logo-container {
+                display: none;
+            }
+
+            /* Enable the mobile header */
+            .mobile-header {
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                padding-top: 10px;
+                /* padding-left: 15px; */
+                padding-bottom: 0px;
+                /* padding-right: 15px; */
+                background: #fff;
+                position: fixed;
+                top: 0;
+                left: 0;
+                width: 100%;
+                z-index: 1001;
+                flex-wrap: wrap;
+            }
+
+            /* Mobile separator below header */
+            .mobile-separator {
+                flex-basis: 100%;
+                height: 2px;
+                background-color: #000;
+            }
+
+            /* Push logo to left, use mobile size */
+            .mobile-header .logo {
+                margin-left: 15px;
+                width: 50vw;
+                max-width: 200px;
+            }
+
+            /* Hamburger toggle button on the right */
+            .mobile-menu-toggle {
+                margin-right: 10px;
+                background: none;
+                border: none;
+                cursor: pointer;
+                padding: 10px;
+                z-index: 1002;
+            }
+
+            /* Hamburger icon lines */
+            .mobile-menu-toggle .bar {
+                display: block;
+                width: 25px;
+                height: 3px;
+                margin: 4px 0;
+                background-color: #000;
+                transition: all 0.3s ease;
+            }
+
+            /* Hide the original nav menu by default (we’ll slide it in) */
+            .top-menu {
+                position: fixed;
+                top: 0;
+                /* behind the mobile header */
+                right: 0;
+                width: 100%;
+                height: 100%;
+                background-color: #fff;
+                transform: translateX(100%);
+                transition: transform 0.3s ease;
+                z-index: 1000;
+            }
+
+            /* When mobile menu is active, slide in */
+            .top-menu.active {
+                transform: translateX(0);
+            }
+
+            /* In mobile, hide the menu separator inside the nav */
+            .top-menu .menu-separator {
+                display: none;
+            }
+
+            /* In mobile, show the menu items in block layout when visible */
+            .top-menu ul {
+                display: block;
+                padding: 80px 20px 20px;
+                /* give space for header and some padding */
+                text-align: center;
+            }
+
+            .top-menu li {
+                display: block;
+                margin: 15px 0;
+            }
+
+            .top-menu a {
+                display: inline-block;
+                text-align: center;
+                width: 100%;
+            }
+
+            /* Adjust page content so it doesn't hide behind the fixed mobile header */
+
+            .hero {
+                margin-top: 60px;
+            }
+
+            /* Transform hamburger to cross when active */
+            .mobile-menu-toggle.active .bar:nth-child(1) {
+                transform: translateY(7px) rotate(45deg);
+            }
+
+            .mobile-menu-toggle.active .bar:nth-child(2) {
+                opacity: 0;
+            }
+
+            .mobile-menu-toggle.active .bar:nth-child(3) {
+                transform: translateY(-7px) rotate(-45deg);
+            }
+        }
+
+        /* Footer line */
+        .footer-line {
+            border: none;
+            border-top: 2px solid #000;
+            margin-bottom: 15px;
+            /* margin-left: 2vw;
+            margin-right: 2vw; */
+        }
+
+        /* Footer overall container */
+        footer {
+            color: #000;
+            background-color: #fff;
+            /* padding: 1em 0; */
+        }
+
+        /* Grid layout for screens above 630px */
+        .footer-container {
+            display: grid;
+            grid-template-columns: 1fr auto 1fr;
+            /* Left and right take equal space; center auto */
+            align-items: center;
+            padding: 0 1em;
+            /* Prevent text from touching the edges */
+            margin-left: 10px;
+            margin-right: 10px;
+        }
+
+        /* Left section flush left */
+        .footer-left {
+            justify-self: start;
+            text-align: left;
+        }
+
+        /* Right section flush right */
+        .footer-right {
+            justify-self: end;
+            text-align: right;
+            display: flex;
+            flex-flow: row;
+            justify-content: flex-end;
+            gap: 20px;
+        }
+
+        /* Center section: Buttons */
+        .footer-center {
+            justify-self: center;
+            display: flex;
+            gap: 1em;
+        }
+
+        /* Make the buttons equal in size with centered text */
+        .footer-center a {
+            flex: 1;
+            text-align: center;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 11pt;
+            font-weight: bold;
+        }
+
+        .footer-button {
+            background-color: #045184;
+            color: #fff;
+            text-decoration: none;
+            padding: 0.7em 1em;
+            font-size: 0.9rem;
+            border: 1px solid #045184;
+            transition: background-color 0.3s ease, border-color 0.3s ease;
+        }
+
+        .footer-button:hover {
+            background-color: #fff;
+            border-color: #000;
+            color: #000;
+        }
+
+        /* Bottom link (Impressum / Imprint) always centered */
+        .footer-bottom {
+            text-align: center;
+            margin-top: 1em;
+        }
+
+        .footer-bottom a {
+            color: #045184;
+            text-decoration: none;
+            font-size: 0.9rem;
+        }
+
+        .footer-bottom a:hover {
+            text-decoration: underline;
+        }
+
+        /* Responsive rules */
+
+        /* Wider than 1200px */
+
+        @media (min-width: 1200px) {
+            .footer-container {
+                margin-left: 8vw;
+                margin-right: 8vw;
+            }
+        }
+
+        /* Between 930px and 730px:
+       - Only the buttons in the center stack vertically,
+       - Left/right sections remain in their grid cells. */
+        @media (max-width: 930px) and (min-width: 731px) {
+            .footer-center {
+                flex-direction: column;
+                gap: 0.5em;
+            }
+        }
+
+        /* Under 730px: Stack all elements vertically */
+        @media (max-width: 730px) {
+            .footer-container {
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                text-align: center;
+                gap: 1em;
+                padding: 0 1em;
+            }
+
+            /* Adjust left/right texts for vertical layout if needed */
+            .footer-left {
+                text-align: center;
+            }
+
+            .description {
+                text-align: right;
+            }
+
+            .answers {
+                text-align: left;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <header class="logo-container">
+        <a href="hotel934.de">
+            <img src="../general_photos/_edited.png" alt="Logo" class="logo">
+        </a>
+    </header>
+
+    <!-- Mobile Header (visible on mobile screens) -->
+    <header class="mobile-header">
+        <img src="../general_photos/_edited.png" alt="Logo" class="logo">
+        <button class="mobile-menu-toggle" aria-label="Toggle menu">
+            <span class="bar"></span>
+            <span class="bar"></span>
+            <span class="bar"></span>
+        </button>
+        <!-- Mobile Separator (only visible on mobile) -->
+        <div class="mobile-separator"></div>
+    </header>
+
+    <!-- Navigation Menu -->
+    <nav class="top-menu">
+        <ul>
+            <li><a href="#">Willkommen / Welcome</a></li>
+            <li><a href="#">Entdecken / Discover</a></li>
+            <li><a href="#">Preise / Prices</a></li>
+            <li><a href="#">Service</a></li>
+            <li><a href="#">Celle</a></li>
+            <li class="highlight"><a href="#">Anfrage / Inquiry</a></li>
+        </ul>
+        <div class="menu-separator"></div>
+    </nav>
+
+    <header class="hero">
+        <div class="hero-text">
+            <h1>Preise</h1>
+            <h2>Prices</h2>
+        </div>
+        <div class="hero-image">
+            <img src="../Zimmer\Hotel924-Celle283.jpg" alt="Hotel Room">
+        </div>
+    </header>
+
+    <!-- Preise -->
+    <section class="content">
+        <div class="column">
+            <h3>Unsere normalen Zimmerpreise</h3>
+            <h4>(bitte fragen Sie für Messepreise)</h4>
+            <p>Fühlen Sie sich wie zu Hause in unseren individuell und gemütlich eingerichteten Zimmern mit Dusche oder
+                Bad, WC, Flachbild TV, kostenloses WLAN, sowie freie Parkplätze am Haus.</p>
+            <p>Geschäftsleute, Messeaussteller und -besucher, Monteure sowie Familien fühlen sich besonders wohl bei
+                uns.</p>
+            <table>
+                <tr>
+                    <td>Einzelzimmer - Standard</td>
+                    <td>54-58&nbsp;€</td>
+                </tr>
+                <tr>
+                    <td>Doppelzimmer - Economy*</td>
+                    <td>65-70&nbsp;€</td>
+                </tr>
+                <tr>
+                    <td>Doppelzimmer - Standard</td>
+                    <td>70-78&nbsp;€</td>
+                </tr>
+                <tr>
+                    <td>Dreibettzimmer - Standard</td>
+                    <td>90-105&nbsp;€</td>
+                </tr>
+                <tr>
+                    <td>Extra Bett</td>
+                    <td>20&nbsp;€</td>
+                </tr>
+            </table>
+            <div class="grey">
+                <p>* Entweder ein kleineres Doppelzimmer mit Dusche/WC oder ein größeres Doppelzimmer mit Dusche aber WC
+                    auf
+                    dem Gang.</p>
+                <p>Das Frühstücksbuffet können Sie für € 7,50 p.P hinzubuchen. (Nur für Gruppen)</p>
+                <p>Die hier angegebenen Preise sind nicht für den Zeitraum der <a
+                        href="https://www.hannovermesse.de/de/">Leitmessen in Hannover</a>
+                    gültig.</p>
+                <p>Die Nutzung unseres Parkplatzes ist gebührenfrei.</p>
+                <p>Kinder bis 6 Jahren übernachten kostenlos im Bett der Eltern.</p>
+                <p>Für Gruppen ab 8 Personen halten wir spezielle Angebote bereit. <a href="#">Bitte sprechen Sie uns
+                        an.</a></p>
+                <h4>Stornierungsbedingungen:</h4>
+                <ul>
+                    <li>Standard Reservierung: Kostenlos Stornierungen müssen 24 Stunden vor der Anreise getätigt
+                        werden,
+                        80 % Berechnung beim nicht erscheinen.</li>
+                    <li>Garantierte Reservierungen während Hannover Messezeit: Kostenlos Stornierungen müssen 7 Tage vor
+                        der
+                        Anreise getätigt werden, beim nicht erscheinen oder Buchung ändern verfällt die Anzahlung.</li>
+                    <li>Gruppen Reservierungen: Kostenlos Stornierungen müssen 21 Tage vor der Anreise getätigt werden.
+                        Beim
+                        nicht erscheinen oder Buchung ändern verfällt die Anzahlung.</li>
+                </ul>
+                <p>Folgende Karten werden angenommen:</p>
+                <div class="cards">
+                    <img src="../general_photos/cards.avif" alt="EC, Maestro, MasterCard, Visa">
+                </div>
+            </div>
+        </div>
+        <div class="column">
+            <h3>Our normal room prices</h3>
+            <h4>(please ask for fair/exhibition prices)</h4>
+            <p>Feel at home in our individually decorated and comfortable rooms which benefit from either a shower or a
+                bath, WC, flatscreen TV, free WLAN as well as free parking behind the hotel.</p>
+            <p>Business travellers, monteurs, tradefair attendees and exhibitors as well as families feel especially
+                welcome here.</p>
+            <table>
+                <tr>
+                    <td>Single room - standard</td>
+                    <td>54-58&nbsp;€</td>
+                </tr>
+                <tr>
+                    <td>Double room - economy*</td>
+                    <td>65-70&nbsp;€</td>
+                </tr>
+                <tr>
+                    <td>Double room - standard</td>
+                    <td>70-78&nbsp;€</td>
+                </tr>
+                <tr>
+                    <td>Family room - standard</td>
+                    <td>90-105&nbsp;€</td>
+                </tr>
+                <tr>
+                    <td>Extra bed</td>
+                    <td>20&nbsp;€</td>
+                </tr>
+            </table>
+            <div class="grey">
+                <p>* Either a smaller doubleroom with shower/WC or a larger doubleroom with shower and a shared WC in
+                    the
+                    hallway.</p>
+                <p>You can book a breakfast buffet for € 7,50 pp. (Only for groups)</p>
+                <p>The listed prices are not valid during <a href="https://www.hannovermesse.de/de/">trade fairs in
+                        Hannover</a>. Please contact us for the
+                    relevant prices at the time.</p>
+                <p>The use of our parking facilities is free of charge.</p>
+                <p>Children up to 6 years of age can sleep with their parents free of charge.</p>
+                <p>There are special offers available for groups of 8 or more. <a href="#">Please contact us
+                        accordingly.</a></p>
+                <h4>Cancellation</h4>
+                <ul>
+                    <li>Standard Reservation: free cancellation needs to be made 24 hours before arrival date. No show,
+                        80%
+                        charge.</li>
+                    <li>Guaranteed Reservations during Hannover exhibition period: free cancellation needs to be made
+                        7 days
+                        before arrival date. No Shows or reservation changes forfeit the advance prepayment.</li>
+                    <li>Group reservations: free cancellation needs to be made 21 days before arrival date. No Shows or
+                        reservation changes forfeit the advance prepayment.</li>
+                </ul>
+                <p>Following cards will be accepted:</p>
+                <div class="cards">
+                    <img src="../general_photos/cards.avif" alt="EC, Maestro, MasterCard, Visa">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Rezeptionszeiten -->
+    <hr>
+    <section class="content">
+        <div class="column">
+            <h3>Rezeptionszeiten</h3>
+            <table>
+                <tr>
+                    <td><strong>Einchecken</strong></td>
+                    <td>15:30 - 21:00*</td>
+                </tr>
+                <tr>
+                    <td><strong>Auschecken</strong></td>
+                    <td>08:00 - 11:00</td>
+                </tr>
+            </table>
+            <p>*Früheres Einchecken ist je nach Buchungslage möglich. Bitte kontaktieren Sie uns einen Tag vor Ihrer
+                Anreise, um dies zu bestätigen. Späteres Einchecken ist bis 23:00 Uhr, nach Absprache, möglich. Rufen
+                Sie uns in diesem Fall bei Ankunft an und wir gewähren Ihnen Einlass.</p>
+        </div>
+        <div class="column">
+            <h3>Reception times</h3>
+            <table>
+                <tr>
+                    <td><strong>Check in</strong></td>
+                    <td>15:30 - 21:00*</td>
+                </tr>
+                <tr>
+                    <td><strong>Check out</strong></td>
+                    <td>08:00 - 11:00</td>
+                </tr>
+            </table>
+            <p>*An early check-in is only possible if the overall booking situation permits. Please contact us a day
+                prior to your arrival for confirmation. Late check-in until 11PM is possible. Please confirm this in
+                advance and call us upon arrival, so as to ensure access.</p>
+        </div>
+    </section>
+
+    <footer>
+        <!-- Horizontal line at the top of the footer -->
+        <hr class="footer-line" />
+
+        <!-- Main footer content -->
+        <div class="footer-container">
+            <!-- Left section: Hotel address -->
+            <div class="footer-left">
+                <p>
+                    <strong>Hotel Neun 3/4</strong><br>
+                    Bahnhofstrasse 46<br>
+                    29221 Celle
+                </p>
+            </div>
+
+            <!-- Center section: Two equal-size "button" links -->
+            <div class="footer-center">
+                <a href="#" class="footer-button">Anfrage / Inquiry</a>
+                <a href="#" class="footer-button">Anfahrt / Directions</a>
+            </div>
+
+            <!-- Right section: Contact details -->
+            <div class="footer-right">
+                <p class="description">
+                    Tel:<br>
+                    Handy:<br>
+                    Email:<br>
+                </p>
+                <p class="answers">
+                    +49 (0) 5141 9090 731<br>
+                    +49 (0) 176 6444 9801<br>
+                    <a href="mailto:info@hotel34.de">info@hotel934.de</a>
+                </p>
+            </div>
+        </div>
+
+        <!-- Bottom link (Impressum / Imprint) -->
+        <div class="footer-bottom">
+            <a href="#">Impressum / Imprint</a>
+        </div>
+    </footer>
+
+    <script>
+        // Mobile menu toggle functionality
+        const toggleButton = document.querySelector('.mobile-menu-toggle');
+        const mobileMenu = document.querySelector('.top-menu');
+
+        toggleButton.addEventListener('click', function () {
+            // Toggle the active class on both the menu and the toggle button
+            mobileMenu.classList.toggle('active');
+            toggleButton.classList.toggle('active');
+        });
+    </script>
+</body>
+
+</html>

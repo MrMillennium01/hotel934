@@ -1,0 +1,327 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <title>Hotel Neun 3/4 in Celle</title>
+    <link rel="stylesheet" href="chatgpt.css" />
+    <link href="https://fonts.cdnfonts.com/css/avenir" rel="stylesheet">
+</head>
+
+<body>
+    <!-- Welcome Text Section -->
+    <section class="welcome-section">
+        <div class="top-image">
+            <img src="../general_photos/bild_von_aussen_cropped.webp" alt="Hotel Neun 3/4 Building" />
+        </div>
+        <div class="heading">
+            <h1>Ihr freundliches Hotel in Celle</h1>
+            <h1>Your friendly hotel in Celle</h1>
+        </div>
+        <div class="text-block">
+            <p>
+                Willkommen zu Hotel Neun 3/4, Ihr freundliches Hotel in Celle. Wir liegen nur 50 Meter vom
+                Bahnhof
+                entfernt und Sie erreichen die historische Altstadt zu Fuß in 7-8 Minuten. Es gibt Restaurants,
+                Bäckereien
+                und Supermärkte in der Nähe. Wir bieten kostenlose Parkplätze und WLAN, sowie eine große Auswahl
+                von Einzel-,
+                Doppel- und Familienzimmer. Einige Zimmer verfügen über ihre eigene Küche. Dieses preiswerte
+                Hotel hat
+                einen Hauch von Harry Potter an sich und sorgt für einen unvergesslichen Aufenthalt in Celle.
+            </p>
+            <div class="divider"></div>
+            <p>
+                Welcome to the Hotel Neun 3/4, your friendly hotel in Celle. We're only 50 meters from the train
+                station, and you can walk to the historic "Altstadt" in 7-8 minutes. There are restaurants,
+                bakeries and
+                supermarkets nearby. We offer free parking and Wi-Fi as well as a wide selection of single,
+                double and family
+                rooms - some rooms even have their own kitchen. This budget hotel has a touch of Harry Potter
+                and will give
+                you an unforgettable stay in Celle.
+            </p>
+        </div>
+    </section>
+
+    <!-- Rooms Section -->
+    <section class="rooms-section">
+        <!-- Single Rooms Gallery -->
+        <h2>Unsere Einzelzimmer / Our Single Rooms</h2>
+        <div class="scroll-gallery" id="scroll-gallery-single-rooms">
+            <div class="scroll-left" aria-label="Scroll left" id="left">&#10094;</div>
+            <div class="scroll-content" id="scroll-content-single-rooms">
+                <div class="room-card">
+                    <img src="../Zimmer/Hotel924-Celle218.jpg" alt="Single Room 1" />
+                </div>
+                <div class="room-card">
+                    <img src="../Zimmer/Hotel924-Celle218.jpg" alt="Single Room 2" />
+                </div>
+                <div class="room-card">
+                    <img src="../Zimmer/Hotel924-Celle218.jpg" alt="Single Room 3" />
+                </div>
+                <div class="room-card">
+                    <img src="../Zimmer/Hotel924-Celle218.jpg" alt="Single Room 1" />
+                </div>
+                <div class="room-card">
+                    <img src="../Zimmer/Hotel924-Celle218.jpg" alt="Single Room 2" />
+                </div>
+                <div class="room-card">
+                    <img src="../Zimmer/Hotel924-Celle218.jpg" alt="Single Room 3" />
+                </div>
+                <div class="room-card">
+                    <img src="../Zimmer/Hotel924-Celle218.jpg" alt="Single Room 2" />
+                </div>
+                <div class="room-card">
+                    <img src="../Zimmer/Hotel924-Celle218.jpg" alt="Single Room 3" />
+                </div>
+
+                <div class="room-card">
+                    <img src="../Zimmer/Hotel924-Celle218.jpg" alt="Single Room 3" />
+                </div> <!-- ...add more images as needed... -->
+            </div>
+            <div class="scroll-right" aria-label="Scroll right" id="right">&#10095;</div>
+        </div>
+
+        <!-- Double Rooms Gallery -->
+        <h2>Unsere Doppelzimmer / Our Double Rooms</h2>
+        <div class="scroll-gallery">
+            <button class="scroll-left" aria-label="Scroll left">&lt;</button>
+            <div class="scroll-container">
+                <div class="scroll-content">
+                    <div class="room-card">
+                        <img src="../Zimmer/Hotel924-Celle218.jpg" alt="Double Room 1" />
+                    </div>
+                    <div class="room-card">
+                        <img src="../Zimmer/Hotel924-Celle218.jpg" alt="Double Room 2" />
+                    </div>
+                    <div class="room-card">
+                        <img src="../Zimmer/Hotel924-Celle218.jpg" alt="Double Room 3" />
+                    </div>
+                    <!-- ...add more images as needed... -->
+                </div>
+            </div>
+            <button class="scroll-right" aria-label="Scroll right">&gt;</button>
+        </div>
+
+        <!-- Family Rooms Gallery -->
+        <h2>Unsere Familienzimmer / Our Family Rooms</h2>
+        <div class="scroll-gallery">
+            <button class="scroll-left" aria-label="Scroll left">&lt;</button>
+            <div class="scroll-container">
+                <div class="scroll-content">
+                    <div class="room-card">
+                        <img src="../Zimmer/Hotel924-Celle218.jpg" alt="Family Room 1" />
+                    </div>
+                    <div class="room-card">
+                        <img src="../Zimmer/Hotel924-Celle218.jpg" alt="Family Room 2" />
+                    </div>
+                    <div class="room-card">
+                        <img src="../Zimmer/Hotel924-Celle218.jpg" alt="Family Room 3" />
+                    </div>
+                    <!-- ...add more images as needed... -->
+                </div>
+            </div>
+            <button class="scroll-right" aria-label="Scroll right">&gt;</button>
+        </div>
+    </section>
+
+
+    <!--Footer Section-->
+    <style>
+        /* Basic reset (optional) */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: "Avenir", Helvetica, sans-serif;
+        }
+
+        /* Footer line */
+        .footer-line {
+            border: none;
+            border-top: 2px solid #000;
+            margin-bottom: 15px;
+            /* margin-left: 2vw;
+                margin-right: 2vw; */
+        }
+
+        /* Footer overall container */
+        footer {
+            color: #000;
+            background-color: #fff;
+            padding: 1em 0;
+        }
+
+        /* Grid layout for screens above 630px */
+        .footer-container {
+            display: grid;
+            grid-template-columns: 1fr auto 1fr;
+            /* Left and right take equal space; center auto */
+            align-items: center;
+            padding: 0 1em;
+            /* Prevent text from touching the edges */
+            margin-left: 10px;
+            margin-right: 10px;
+        }
+
+        /* Left section flush left */
+        .footer-left {
+            justify-self: start;
+            text-align: left;
+        }
+
+        /* Right section flush right */
+        .footer-right {
+            justify-self: end;
+            text-align: right;
+            display: flex;
+            flex-flow: row;
+            justify-content: flex-end;
+            gap: 20px;
+        }
+
+        /* Center section: Buttons */
+        .footer-center {
+            justify-self: center;
+            display: flex;
+            gap: 1em;
+        }
+
+        /* Make the buttons equal in size with centered text */
+        .footer-center a {
+            flex: 1;
+            text-align: center;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 11pt;
+            font-weight: bold;
+        }
+
+        .footer-button {
+            background-color: #045184;
+            color: #fff;
+            text-decoration: none;
+            padding: 0.7em 1em;
+            font-size: 0.9rem;
+            border: 1px solid #045184;
+            transition: background-color 0.3s ease, border-color 0.3s ease;
+        }
+
+        .footer-button:hover {
+            background-color: #fff;
+            border-color: #000;
+            color: #000;
+        }
+
+        /* Bottom link (Impressum / Imprint) always centered */
+        .footer-bottom {
+            text-align: center;
+            margin-top: 1em;
+        }
+
+        .footer-bottom a {
+            color: #045184;
+            text-decoration: none;
+            font-size: 0.9rem;
+        }
+
+        .footer-bottom a:hover {
+            text-decoration: underline;
+        }
+
+        /* Responsive rules */
+
+        /* Wider than 1200px */
+
+        @media (min-width: 1200px) {
+            .footer-container {
+                margin-left: 8vw;
+                margin-right: 8vw;
+            }
+        }
+
+        /* Between 930px and 730px:
+           - Only the buttons in the center stack vertically,
+           - Left/right sections remain in their grid cells. */
+        @media (max-width: 930px) and (min-width: 731px) {
+            .footer-center {
+                flex-direction: column;
+                gap: 0.5em;
+            }
+        }
+
+        /* Under 730px: Stack all elements vertically */
+        @media (max-width: 730px) {
+            .footer-container {
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                text-align: center;
+                gap: 1em;
+                padding: 0 1em;
+            }
+
+            /* Adjust left/right texts for vertical layout if needed */
+            .footer-left {
+                text-align: center;
+            }
+
+            .description {
+                text-align: right;
+            }
+
+            .answers {
+                text-align: left;
+            }
+        }
+    </style>
+
+    <!-- Other site content above -->
+    <footer>
+        <!-- Horizontal line at the top of the footer -->
+        <hr class="footer-line" />
+
+        <!-- Main footer content -->
+        <div class="footer-container">
+            <!-- Left section: Hotel address -->
+            <div class="footer-left">
+                <p>
+                    <strong>Hotel Neun 3/4</strong><br>
+                    Bahnhofstrasse 46<br>
+                    29221 Celle
+                </p>
+            </div>
+
+            <!-- Center section: Two equal-size "button" links -->
+            <div class="footer-center">
+                <a href="#" class="footer-button">Anfrage / Inquiry</a>
+                <a href="#" class="footer-button">Anfahrt / Directions</a>
+            </div>
+
+            <!-- Right section: Contact details -->
+            <div class="footer-right">
+                <p class="description">
+                    Tel:<br>
+                    Handy:<br>
+                    Email:<br>
+                </p>
+                <p class="answers">
+                    +49 (0) 5141 9090 731<br>
+                    +49 (0) 176 6444 9801<br>
+                    <a href="mailto:info@hotel34.de">info@hotel934.de</a>
+                </p>
+            </div>
+        </div>
+
+        <!-- Bottom link (Impressum / Imprint) -->
+        <div class="footer-bottom">
+            <a href="#">Impressum / Imprint</a>
+        </div>
+    </footer>
+
+</body>
+
+
+</html>

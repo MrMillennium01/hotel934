@@ -1,0 +1,777 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Anfrage / Inquiry</title>
+    <link href="https://fonts.cdnfonts.com/css/avenir" rel="stylesheet">
+    <style>
+        :root {
+            --theme-blue: #045184;
+            --text-color: #000;
+            --font-family: "Avenir", Helvetica, sans-serif;
+        }
+
+        h1 {
+            font-size: clamp(2.0736rem, 2.0736vw, 2.4883rem);
+            margin-bottom: 0.5rem;
+        }
+
+        h2 {
+            font-size: clamp(1.728rem, 1.728vw, 2.0736rem);
+        }
+
+        h3 {
+            font-size: clamp(1.44rem, 1.44vw, 1.728rem);
+        }
+
+        h4 {
+            font-size: clamp(1.2rem, 1.2vw, 1.44rem);
+            font-weight: 500;
+        }
+
+        p {
+            font-size: clamp(1rem, 1vw, 1.2rem);
+        }
+
+        body {
+            font-family: "Avenir", Helvetica, sans-serif;
+            background: #fff;
+            margin: 0;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            background: #fff;
+            padding: 20px;
+        }
+
+        .container form {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+        }
+
+        .container form div label {
+            font-weight: bold;
+            display: block;
+            margin-bottom: 4px;
+            font-size: clamp(1rem, 1vw, 1.2rem);
+        }
+
+        .container form div input,
+        .container form div select,
+        .container form div textarea {
+            width: 100%;
+            padding: 8px;
+            font-size: clamp(1rem, 1vw, 1.2rem);
+            border: 1px solid #ccc;
+            box-sizing: border-box;
+        }
+
+        .container form .full-width {
+            grid-column: 1 / -1;
+        }
+
+        .container form .phone-row {
+            grid-column: 1 / -1;
+            display: flex;
+            flex-wrap: nowrap;
+            gap: 20px;
+        }
+
+        .container form .phone-row>div:first-child {
+            flex: 0 0 auto;
+        }
+
+        .container form .phone-row>div:first-child input {
+            max-width: 80px;
+        }
+
+        .container form .phone-row>div:last-child {
+            flex: 1 1 auto;
+        }
+
+        .container form .button-area {
+            grid-column: 1 / -1;
+            text-align: right;
+        }
+
+        .container form .button-area button {
+            background: var(--theme-blue);
+            color: #fff;
+            border: 1px solid var(--theme-blue);
+            padding: 12px 24px;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: 0.3s;
+            font-family: "Avenir", Helvetica, sans-serif;
+            font-size: clamp(1rem, 1vw, 1.2rem);
+        }
+
+        .container form .button-area button:hover {
+            background-color: #fff;
+            border-color: #000;
+            color: #000;
+        }
+
+        .modal {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.6);
+            display: none;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .modal .modal-content {
+            background: #fff;
+            padding: 20px;
+            max-width: 400px;
+            width: 100%;
+            border-radius: 4px;
+            text-align: center;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+        }
+
+        .modal .modal-content button {
+            margin-top: 20px;
+        }
+
+        @media (max-width: 700px) {
+            .container form {
+                grid-template-columns: 1fr;
+            }
+
+            .container form .phone-row {
+                flex-wrap: wrap;
+            }
+
+            .container form .phone-row>div {
+                flex: 1 1 100%;
+            }
+        }
+
+
+        /* For top-menu */
+
+        /* Desktop Logo Section */
+        .logo-container {
+            text-align: center;
+        }
+
+        .logo {
+            width: 25vw;
+            max-width: 333px;
+        }
+
+        /* Hide mobile header by default (desktop view) */
+        .mobile-header {
+            display: none;
+        }
+
+        /* Sticky Top Menu: remains at the top when scrolling */
+        .top-menu {
+            width: 100%;
+            text-align: center;
+            background-color: #fff;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            /* padding-left: 2vw; */
+            /* padding-right: 2vw; */
+            padding-top: 2px;
+        }
+
+        /* Use flex layout to keep menu items in one line */
+        .top-menu ul {
+            list-style: none;
+            display: flex;
+            justify-content: center;
+            flex-wrap: nowrap;
+            align-items: center;
+            justify-content: space-between;
+            margin: 0 2vw;
+        }
+
+        /* Each menu item */
+        .top-menu li {
+            display: inline-block;
+            margin: 0 15px;
+        }
+
+        /* Menu links */
+        .top-menu a {
+            text-decoration: none;
+            color: #000;
+            font-weight: 400;
+            font-size: clamp(1rem, 1vw, 1.2rem);
+            transition: all 0.3s ease;
+            white-space: nowrap;
+        }
+
+        /* Hover effect for normal links */
+        .top-menu a:hover {
+            color: #367eff;
+        }
+
+        /* Highlight for the rightmost menu item as a rectangular button */
+        .top-menu .highlight a {
+            display: inline-flex;
+            background-color: #045184;
+            color: #fff;
+            padding: 10px 20px;
+            text-align: center;
+            border: 1px solid #045184;
+        }
+
+        /* Ensure full background for highlighted link */
+        .top-menu .highlight a {
+            display: block;
+        }
+
+        /* Hover effect for the highlighted (rightmost) link */
+        .top-menu .highlight a:hover {
+            background-color: #fff;
+            color: #000;
+            border: 1px solid #000;
+        }
+
+        /* Horizontal separator below the menu (desktop) */
+        .menu-separator {
+            width: 100%;
+            align-content: center;
+            height: 2px;
+            background-color: #000;
+            margin-top: 8px;
+        }
+
+        /* Desktop Content */
+        .content {
+            padding: 20px;
+            margin-top: 20px;
+        }
+
+        /* ---------------------------------------------- */
+        /* Mobile Styles (width below 888px) */
+        @media screen and (max-width: 888px) {
+
+            /* Hide the desktop header/logo container */
+            .logo-container {
+                display: none;
+            }
+
+            /* Enable the mobile header */
+            .mobile-header {
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                padding-top: 10px;
+                /* padding-left: 15px; */
+                padding-bottom: 0px;
+                /* padding-right: 15px; */
+                background: #fff;
+                position: fixed;
+                top: 0;
+                left: 0;
+                width: 100%;
+                z-index: 1001;
+                flex-wrap: wrap;
+            }
+
+            /* Mobile separator below header */
+            .mobile-separator {
+                flex-basis: 100%;
+                height: 2px;
+                background-color: #000;
+            }
+
+            /* Push logo to left, use mobile size */
+            .mobile-header .logo {
+                margin-left: 15px;
+                width: 50vw;
+                max-width: 200px;
+            }
+
+            /* Hamburger toggle button on the right */
+            .mobile-menu-toggle {
+                margin-right: 10px;
+                background: none;
+                border: none;
+                cursor: pointer;
+                padding: 10px;
+                z-index: 1002;
+            }
+
+            /* Hamburger icon lines */
+            .mobile-menu-toggle .bar {
+                display: block;
+                width: 25px;
+                height: 3px;
+                margin: 4px 0;
+                background-color: #000;
+                transition: all 0.3s ease;
+            }
+
+            /* Hide the original nav menu by default (we’ll slide it in) */
+            .top-menu {
+                position: fixed;
+                top: 0;
+                /* behind the mobile header */
+                right: 0;
+                width: 100%;
+                height: 100%;
+                background-color: #fff;
+                transform: translateX(100%);
+                transition: transform 0.3s ease;
+                z-index: 1000;
+            }
+
+            /* When mobile menu is active, slide in */
+            .top-menu.active {
+                transform: translateX(0);
+            }
+
+            /* In mobile, hide the menu separator inside the nav */
+            .top-menu .menu-separator {
+                display: none;
+            }
+
+            /* In mobile, show the menu items in block layout when visible */
+            .top-menu ul {
+                display: block;
+                padding: 80px 20px 20px;
+                /* give space for header and some padding */
+                text-align: center;
+            }
+
+            .top-menu li {
+                display: block;
+                margin: 15px 0;
+            }
+
+            .top-menu a {
+                display: inline-block;
+                text-align: center;
+                width: 100%;
+            }
+
+            /* Adjust page content so it doesn't hide behind the fixed mobile header */
+            .container {
+                margin-top: 60px;
+            }
+
+            /* Transform hamburger to cross when active */
+            .mobile-menu-toggle.active .bar:nth-child(1) {
+                transform: translateY(7px) rotate(45deg);
+            }
+
+            .mobile-menu-toggle.active .bar:nth-child(2) {
+                opacity: 0;
+            }
+
+            .mobile-menu-toggle.active .bar:nth-child(3) {
+                transform: translateY(-7px) rotate(-45deg);
+            }
+        }
+
+        /* footer stuff */
+        /* Footer line */
+        .footer-line {
+            border: none;
+            border-top: 2px solid #000;
+            margin-bottom: 15px;
+            /* margin-left: 2vw;
+            margin-right: 2vw; */
+        }
+
+        /* Footer overall container */
+        footer {
+            color: #000;
+            background-color: #fff;
+            /* padding: 1em 0; */
+        }
+
+        /* Grid layout for screens above 630px */
+        .footer-container {
+            display: grid;
+            grid-template-columns: 1fr auto 1fr;
+            /* Left and right take equal space; center auto */
+            align-items: center;
+            padding: 0 1em;
+            /* Prevent text from touching the edges */
+            margin-left: 10px;
+            margin-right: 10px;
+        }
+
+        /* Left section flush left */
+        .footer-left {
+            justify-self: start;
+            text-align: left;
+        }
+
+        /* Right section flush right */
+        .footer-right {
+            justify-self: end;
+            text-align: right;
+            display: flex;
+            flex-flow: row;
+            justify-content: flex-end;
+            gap: 20px;
+        }
+
+        /* Center section: Buttons */
+        .footer-center {
+            justify-self: center;
+            display: flex;
+            gap: 1em;
+        }
+
+        /* Make the buttons equal in size with centered text */
+        .footer-center a {
+            flex: 1;
+            text-align: center;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 11pt;
+            font-weight: bold;
+        }
+
+        .footer-button {
+            background-color: #045184;
+            color: #fff;
+            text-decoration: none;
+            padding: 0.7em 1em;
+            font-size: 0.9rem;
+            border: 1px solid #045184;
+            transition: background-color 0.3s ease, border-color 0.3s ease;
+        }
+
+        .footer-button:hover {
+            background-color: #fff;
+            border-color: #000;
+            color: #000;
+        }
+
+        /* Bottom link (Impressum / Imprint) always centered */
+        .footer-bottom {
+            text-align: center;
+            margin-top: 1em;
+        }
+
+        .footer-bottom a {
+            color: #045184;
+            text-decoration: none;
+            font-size: 0.9rem;
+        }
+
+        .footer-bottom a:hover {
+            text-decoration: underline;
+        }
+
+        /* Responsive rules */
+
+        /* Wider than 1200px */
+
+        @media (min-width: 1200px) {
+            .footer-container {
+                margin-left: 8vw;
+                margin-right: 8vw;
+            }
+        }
+
+        /* Between 930px and 730px:
+       - Only the buttons in the center stack vertically,
+       - Left/right sections remain in their grid cells. */
+        @media (max-width: 930px) and (min-width: 731px) {
+            .footer-center {
+                flex-direction: column;
+                gap: 0.5em;
+            }
+        }
+
+        /* Under 730px: Stack all elements vertically */
+        @media (max-width: 730px) {
+            .footer-container {
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                text-align: center;
+                gap: 1em;
+                padding: 0 1em;
+            }
+
+            /* Adjust left/right texts for vertical layout if needed */
+            .footer-left {
+                text-align: center;
+            }
+
+            .description {
+                text-align: right;
+            }
+
+            .answers {
+                text-align: left;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Desktop Header (visible on larger screens) -->
+    <header class="logo-container">
+        <a href="https://www.hotel934.de">
+            <img src="../general_photos/_edited.png" alt="Logo" class="logo">
+        </a>
+    </header>
+
+    <!-- Mobile Header (visible on mobile screens) -->
+    <header class="mobile-header">
+        <img src="../general_photos/_edited.png" alt="Logo" class="logo">
+        <button class="mobile-menu-toggle" aria-label="Toggle menu">
+            <span class="bar"></span>
+            <span class="bar"></span>
+            <span class="bar"></span>
+        </button>
+        <!-- Mobile Separator (only visible on mobile) -->
+        <div class="mobile-separator"></div>
+    </header>
+
+    <!-- Navigation Menu -->
+    <nav class="top-menu">
+        <ul>
+            <li><a href="https://www.hotel934.de">Willkommen / Welcome</a></li>
+            <li><a href="https://www.hotel934.de/entdecken-discover">Entdecken / Discover</a></li>
+            <li><a href="https://www.hotel934.de/preise-prices">Preise / Prices</a></li>
+            <li><a href="https://www.celle.de">Celle</a></li>
+            <li class="highlight"><a href="https://www.hotel934.de/anfrage-inquiery">Anfrage / Inquiry</a></li>
+        </ul>
+        <div class="menu-separator"></div>
+    </nav>
+
+
+    <!-- Content Area -->
+    <div class="container">
+        <h1>Anfrage / Inquiry</h1>
+        <form id="inquiryForm" action="https://formsubmit.co/1f5c1b711507444b81a6efb9ad2e242c" method="POST">
+            <input type="hidden" name="_captcha" value="false">
+
+            <div>
+                <label for="name">Name *</label>
+                <input type="text" id="name" name="name" required>
+            </div>
+
+            <div>
+                <label for="email">Email *</label>
+                <input type="email" id="email" name="email" required>
+            </div>
+
+            <div class="full-width phone-row">
+                <div>
+                    <label for="code">Ländervorwahl / Code</label>
+                    <input type="tel" id="code" name="code" placeholder="+49">
+                </div>
+                <div>
+                    <label for="phone">Telefonnummer / Phone number</label>
+                    <input type="tel" id="phone" name="phone" placeholder="123 4567890">
+                </div>
+            </div>
+
+            <div>
+                <label for="checkin">Anreisedatum *</label>
+                <input type="date" id="checkin" name="checkin" required>
+            </div>
+
+            <div>
+                <label for="checkout">Abreisedatum *</label>
+                <input type="date" id="checkout" name="checkout" required>
+            </div>
+
+            <div class="full-width">
+                <label for="address">Adresse / Address *</label>
+                <input type="text" id="address" name="address" required>
+            </div>
+
+            <div>
+                <label for="single">Einzelzimmer / Single Room *</label>
+                <select id="single" name="single" required>
+                    <option>0</option>
+                    <option>1</option>
+                    <option>2</option>
+                    <option>3</option>
+                    <option>4</option>
+                    <option>5</option>
+                </select>
+            </div>
+
+            <div>
+                <label for="double">Doppelzimmer / Double Room *</label>
+                <select id="double" name="double" required>
+                    <option>0</option>
+                    <option>1</option>
+                    <option>2</option>
+                    <option>3</option>
+                    <option>4</option>
+                    <option>5</option>
+                </select>
+            </div>
+
+            <div>
+                <label for="family">Dreibettzimmer / Family Room *</label>
+                <select id="family" name="family" required>
+                    <option>0</option>
+                    <option>1</option>
+                    <option>2</option>
+                </select>
+            </div>
+
+            <div class="full-width">
+                <label for="remark">Anmerkung / Remark</label>
+                <textarea id="remark" name="remark" rows="4"
+                    placeholder="z. B. getrennte Betten / e.g. separated beds"></textarea>
+            </div>
+
+            <div class="button-area">
+                <button type="submit">Send</button>
+            </div>
+        </form>
+    </div>
+
+    <div class="modal" id="successModal">
+        <div class="modal-content">
+            <p>Thank you! Your inquiry has been sent.</p>
+            <button id="closeModal">OK</button>
+        </div>
+    </div>
+
+
+    <footer>
+        <!-- Horizontal line at the top of the footer -->
+        <hr class="footer-line" />
+
+        <!-- Main footer content -->
+        <div class="footer-container">
+            <!-- Left section: Hotel address -->
+            <div class="footer-left">
+                <p>
+                    <strong>Hotel Neun 3/4</strong><br>
+                    Bahnhofstrasse 46<br>
+                    29221 Celle
+                </p>
+            </div>
+
+            <!-- Center section: Two equal-size "button" links -->
+            <div class="footer-center">
+                <a href="https://www.hotel934.de/anfrage-inquiery" class="footer-button">Anfrage / Inquiry</a>
+                <a href="https://maps.app.goo.gl/CXdzNkk9b5cCYLSJ9" class="footer-button">Anfahrt / Directions</a>
+            </div>
+
+            <!-- Right section: Contact details -->
+            <div class="footer-right">
+                <p class="description">
+                    Tel:<br>
+                    Handy:<br>
+                    Email:<br>
+                </p>
+                <p class="answers">
+                    +49 (0) 5141 9090 731<br>
+                    +49 (0) 176 6444 9801<br>
+                    <a href="mailto:info@hotel34.de">info@hotel934.de</a>
+                </p>
+            </div>
+        </div>
+
+        <!-- Bottom link (Impressum / Imprint) -->
+        <div class="footer-bottom">
+            <a href="https://www.hotel934.de/impressum">Impressum / Imprint</a>
+        </div>
+    </footer>
+
+    <script>
+        // Mobile menu toggle functionality
+        const toggleButton = document.querySelector('.mobile-menu-toggle');
+        const mobileMenu = document.querySelector('.top-menu');
+
+        toggleButton.addEventListener('click', function () {
+            // Toggle the active class on both the menu and the toggle button
+            mobileMenu.classList.toggle('active');
+            toggleButton.classList.toggle('active');
+        });
+
+        // Website-related stuff
+        document.addEventListener('DOMContentLoaded', () => {
+            const today = new Date().toISOString().split('T')[0];
+            const checkinEl = document.getElementById('checkin');
+            const checkoutEl = document.getElementById('checkout');
+
+            // 1. On page-load, make sure
+            //    checkin ≥ today, checkout ≥ today+1
+            checkinEl.min = today;
+            // compute today+1
+            const tomorrow = new Date();
+            tomorrow.setDate(tomorrow.getDate() + 1);
+            checkoutEl.min = tomorrow.toISOString().split('T')[0];
+
+            // 2. Whenever the user picks a new check-in date…
+            checkinEl.addEventListener('change', () => {
+                if (!checkinEl.value) return;
+
+                // parse the chosen date
+                const inDate = new Date(checkinEl.value);
+
+                // add one day
+                inDate.setDate(inDate.getDate() + 1);
+
+                // format as YYYY-MM-DD
+                const minOut = inDate.toISOString().split('T')[0];
+
+                // set check-out’s minimum
+                checkoutEl.min = minOut;
+
+                // optional: if they’d already picked a checkout before,
+                // and it’s now below the new minimum, bump it up
+                if (checkoutEl.value && checkoutEl.value < minOut) {
+                    checkoutEl.value = minOut;
+                }
+            });
+        });
+
+        const form = document.getElementById('inquiryForm');
+        const modal = document.getElementById('successModal');
+        const closeBtn = document.getElementById('closeModal');
+
+        form.addEventListener('submit', e => {
+            e.preventDefault();
+            const formData = new FormData(form);
+            fetch(form.action, {
+                method: 'POST',
+                body: formData,
+                headers: { 'Accept': 'application/json' }
+            })
+                .then(res => {
+                    if (res.ok) {
+                        modal.style.display = 'flex';
+                        return res.json().catch(() => null);
+                    }
+                    throw new Error('Network response was not ok');
+                })
+                .catch(err => {
+                    alert('There was a problem sending your inquiry.');
+                    console.error(err);
+                });
+        });
+
+        closeBtn.addEventListener('click', () => {
+            modal.style.display = 'none';
+            form.reset();
+        });
+    </script>
+</body>
+
+</html>
