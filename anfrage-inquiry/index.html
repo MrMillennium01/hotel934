@@ -372,7 +372,7 @@
             }
 
             /* Adjust page content so it doesn't hide behind the fixed mobile header */
-            .container {
+            .content {
                 margin-top: 60px;
             }
 
@@ -387,6 +387,11 @@
 
             .mobile-menu-toggle.active .bar:nth-child(3) {
                 transform: translateY(-7px) rotate(-45deg);
+            }
+
+            .message {
+                margin: 50%, 2%, 5%, 5%;
+                padding: 50%, 0, 0, 0;
             }
         }
 
@@ -551,7 +556,9 @@
 
     <!-- Mobile Header (visible on mobile screens) -->
     <header class="mobile-header">
-        <img src="../general_photos/logo.png" alt="Logo" class="logo">
+        <a href="https://www.hotel934.de">
+            <img src="../general_photos/logo.png" alt="Logo" class="logo">
+        </a>
         <button class="mobile-menu-toggle" aria-label="Toggle menu">
             <span class="bar"></span>
             <span class="bar"></span>
@@ -575,7 +582,7 @@
 
 
     <!-- Content Area -->
-    <div>
+    <section class="content">
         <p class="message">
             Um eine Reservierung vorzunehmen, senden Sie bitte eine E-Mail an
             <a href="mailto:info@hotel934.de">info@hotel934.de</a>.
@@ -583,7 +590,7 @@
             der
             Zimmer und die Anzahl der Gäste an. Wir freuen uns auf Ihre Nachricht!
         </p>
-    </div>
+    </section>
 
     <footer>
         <!-- Horizontal line at the top of the footer -->
@@ -626,6 +633,17 @@
             <a href="https://www.hotel934.de/impressum-imprint/">Impressum / Imprint</a>
         </div>
     </footer>
+    <script>
+        // Mobile menu toggle functionality
+        const toggleButton = document.querySelector('.mobile-menu-toggle');
+        const mobileMenu = document.querySelector('.top-menu');
+
+        toggleButton.addEventListener('click', function () {
+            // Toggle the active class on both the menu and the toggle button
+            mobileMenu.classList.toggle('active');
+            toggleButton.classList.toggle('active');
+        });
+    </script>
 </body>
 
 </html>
