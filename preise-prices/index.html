@@ -4,7 +4,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link href="https://fonts.cdnfonts.com/css/avenir" rel="stylesheet">
+    <link rel="preload" href="https://fonts.cdnfonts.com/css/avenir" as="style"
+        onload="this.onload=null;this.rel='stylesheet'">
+    <noscript>
+        <link rel="stylesheet" href="https://fonts.cdnfonts.com/css/avenir">
+    </noscript>
     <title>Preise / Prices</title>
     <style>
         :root {
@@ -551,13 +555,15 @@
 <body>
     <header class="logo-container">
         <a href="https://www.hotel934.de">
-            <img src="../general_photos/logo.png" alt="Logo" class="logo">
+            <img src="../general_photos/logo.png" srcset="../optimized_images/logo.webp"
+                sizes="(max-width: 888px) 50vw, 25vw" alt="Logo" class="logo" decoding="async">
         </a>
     </header>
 
     <!-- Mobile Header (visible on mobile screens) -->
     <header class="mobile-header">
-        <img src="../general_photos/logo.png" alt="Logo" class="logo">
+        <img src="../general_photos/logo.png" srcset="../optimized_images/logo.webp"
+            sizes="(max-width: 888px) 50vw, 25vw" alt="Logo" class="logo" decoding="async">
         <button class="mobile-menu-toggle" aria-label="Toggle menu">
             <span class="bar"></span>
             <span class="bar"></span>
@@ -585,7 +591,8 @@
             <h2>Prices</h2>
         </div>
         <div class="hero-image">
-            <img src="../Zimmer\Hotel924-Celle283.jpg" alt="Hotel Room">
+            <img src="../Zimmer/Hotel924-Celle283.jpg" srcset="../optimized_images/Zimmer/Hotel924-Celle283.webp"
+                sizes="100vw" alt="Hotel Room" decoding="async">
         </div>
     </header>
 
@@ -647,7 +654,8 @@
                 </ul>
                 <p>Folgende Karten werden angenommen:</p>
                 <div class="cards">
-                    <img src="../general_photos/cards.avif" alt="EC, Maestro, MasterCard, Visa">
+                    <img src="../general_photos/cards.avif" sizes="180px" alt="EC, Maestro, MasterCard, Visa"
+                        loading="lazy" decoding="async">
                 </div>
             </div>
         </div>
@@ -706,7 +714,8 @@
                 </ul>
                 <p>Following cards will be accepted:</p>
                 <div class="cards">
-                    <img src="../general_photos/cards.avif" alt="EC, Maestro, MasterCard, Visa">
+                    <img src="../general_photos/cards.avif" sizes="180px" alt="EC, Maestro, MasterCard, Visa"
+                        loading="lazy" decoding="async">
                 </div>
             </div>
         </div>

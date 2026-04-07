@@ -14,13 +14,15 @@
     <!-- Desktop Header (visible on larger screens) -->
     <header class="logo-container">
         <a href="https://www.hotel934.de">
-            <img src="general_photos/logo.png" alt="Logo" class="logo">
+            <img src="general_photos/logo.png" srcset="optimized_images/logo.webp" sizes="(max-width: 888px) 50vw, 25vw"
+                alt="Logo" class="logo" decoding="async">
         </a>
     </header>
 
     <!-- Mobile Header (visible on mobile screens) -->
     <header class="mobile-header">
-        <img src="general_photos/logo.png" alt="Logo" class="logo">
+        <img src="general_photos/logo.png" srcset="optimized_images/logo.webp" sizes="(max-width: 888px) 50vw, 25vw"
+            alt="Logo" class="logo" decoding="async">
         <button class="mobile-menu-toggle" aria-label="Toggle menu">
             <span class="bar"></span>
             <span class="bar"></span>
@@ -47,13 +49,22 @@
         <div class="carousel-track">
             <!-- Replace these image paths with your own -->
             <img src="general_photos/Hotel924-Celle253 copy (1).jpg"
-                alt="Aussenfassade unseres wunderschoenen Hotels / Outside view of our lovely hotel">
-            <img src="Zimmer/Hotel924-Celle283.jpg" alt="Eines unserer komfortablen Zimmer / One of our cozy rooms">
-            <img src="Zimmer\Hotel924-Celle230.jpg"
-                alt="Ein anderes unserer schoenen Zimmer / Another one of our nice rooms">
-            <img src="Zimmer/Hotel924-Celle218.jpg" alt="Ein weiteres Zimmer / Another room">
-            <img src="Zimmer\Hotel924-Celle289.jpg" alt="Unsere gemuetlichen Einzelzimmer / Our cozy single rooms">
-            <img src="Zimmer\Hotel924-Celle278.jpg" alt="Noch ein weiteres bequemes Zimmer / Another comfortable room">
+                srcset="optimized_images/Hotel924-Celle253 copy (1).webp" sizes="100vw"
+                alt="Aussenfassade unseres wunderschoenen Hotels / Outside view of our lovely hotel" loading="lazy"
+                decoding="async">
+            <img src="Zimmer/Hotel924-Celle283.jpg" alt="Eines unserer komfortablen Zimmer / One of our cozy rooms"
+                srcset="optimized_images/Zimmer/Hotel924-Celle283.webp" sizes="100vw" loading="lazy" decoding="async">
+            <img src="Zimmer/Hotel924-Celle230.jpg" srcset="optimized_images/Zimmer/Hotel924-Celle230.webp"
+                sizes="100vw" alt="Ein anderes unserer schoenen Zimmer / Another one of our nice rooms" loading="lazy"
+                decoding="async">
+            <img src="Zimmer/Hotel924-Celle218.jpg" srcset="optimized_images/Zimmer/Hotel924-Celle218.webp"
+                sizes="100vw" alt="Ein weiteres Zimmer / Another room" loading="lazy" decoding="async">
+            <img src="Zimmer/Hotel924-Celle289.jpg" srcset="optimized_images/Zimmer/Hotel924-Celle289.webp"
+                sizes="100vw" alt="Unsere gemuetlichen Einzelzimmer / Our cozy single rooms" loading="lazy"
+                decoding="async">
+            <img src="Zimmer/Hotel924-Celle278.jpg" srcset="optimized_images/Zimmer/Hotel924-Celle278.webp"
+                sizes="100vw" alt="Noch ein weiteres bequemes Zimmer / Another comfortable room" loading="lazy"
+                decoding="async">
         </div>
         <!-- Dot navigation -->
         <div class=" carousel-lines">

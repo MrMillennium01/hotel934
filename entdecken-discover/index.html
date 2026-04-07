@@ -5,7 +5,11 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Entdecken / Discover</title>
-    <link href="https://fonts.cdnfonts.com/css/avenir" rel="stylesheet">
+    <link rel="preload" href="https://fonts.cdnfonts.com/css/avenir" as="style"
+        onload="this.onload=null;this.rel='stylesheet'">
+    <noscript>
+        <link rel="stylesheet" href="https://fonts.cdnfonts.com/css/avenir">
+    </noscript>
     <link rel="stylesheet" href="new.css">
 </head>
 
@@ -13,13 +17,15 @@
     <!-- Desktop Header (visible on larger screens) -->
     <header class="logo-container">
         <a href="https://www.hotel934.de">
-            <img src="../general_photos/logo.png" alt="Logo" class="logo">
+            <img src="../general_photos/logo.png" srcset="../optimized_images/logo.webp"
+                sizes="(max-width: 888px) 50vw, 25vw" alt="Logo" class="logo" decoding="async">
         </a>
     </header>
 
     <!-- Mobile Header (visible on mobile screens) -->
     <header class="mobile-header">
-        <img src="../general_photos/logo.png" alt="Logo" class="logo">
+        <img src="../general_photos/logo.png" srcset="../optimized_images/logo.webp"
+            sizes="(max-width: 888px) 50vw, 25vw" alt="Logo" class="logo" decoding="async">
         <button class="mobile-menu-toggle" aria-label="Toggle menu">
             <span class="bar"></span>
             <span class="bar"></span>
@@ -48,7 +54,8 @@
             <h2>Your friendly hotel in Celle</h2>
         </div>
         <div class="top-image">
-            <img src="../general_photos/vonaussen.jpg" alt="Hotel Neun 3/4 Building" />
+            <img src="../general_photos/vonaussen.jpg" srcset="../optimized_images/vonaussen.webp" sizes="100vw"
+                alt="Hotel Neun 3/4 Building" decoding="async" />
         </div>
     </header>
 
@@ -85,14 +92,19 @@
             <!-- Carousel track with images -->
             <div class="carousel-track">
                 <!-- Replace these image paths with your own -->
-                <img src="../Zimmer\Hotel924-Celle289.jpg"
-                    alt="Einer unserer bequemen Einzelzimmer / One of our comfortable single rooms">
-                <img src="../Zimmer/Hotel924-Celle286.jpg"
-                    alt="Ein weiteres unserer bequemen Einzelzimmer / Another one of our comfortable single rooms">
-                <img src="../Zimmer/Hotel924-Celle279.jpg"
-                    alt="Ein weiteres schönes Einzelzimmer / Another cozy single room">
-                <img src="../Zimmer/Hotel924-Celle273.jpg"
-                    alt="Die Küche einer unserer Einzelzimmer / The kitchen of one of our single rooms">
+                <img src="../Zimmer/Hotel924-Celle289.jpg" srcset="../optimized_images/Zimmer/Hotel924-Celle289.webp"
+                    sizes="100vw" alt="Einer unserer bequemen Einzelzimmer / One of our comfortable single rooms"
+                    loading="lazy" decoding="async">
+                <img src="../Zimmer/Hotel924-Celle286.jpg" srcset="../optimized_images/Zimmer/Hotel924-Celle286.webp"
+                    sizes="100vw"
+                    alt="Ein weiteres unserer bequemen Einzelzimmer / Another one of our comfortable single rooms"
+                    loading="lazy" decoding="async">
+                <img src="../Zimmer/Hotel924-Celle279.jpg" srcset="../optimized_images/Zimmer/Hotel924-Celle279.webp"
+                    sizes="100vw" alt="Ein weiteres schönes Einzelzimmer / Another cozy single room" loading="lazy"
+                    decoding="async">
+                <img src="../Zimmer/Hotel924-Celle273.jpg" srcset="../optimized_images/Zimmer/Hotel924-Celle273.webp"
+                    sizes="100vw" alt="Die Küche einer unserer Einzelzimmer / The kitchen of one of our single rooms"
+                    loading="lazy" decoding="async">
             </div>
             <!-- Navigation arrows -->
             <div class="carousel-arrows">
@@ -106,14 +118,20 @@
             <!-- Carousel track with images -->
             <div class="carousel-track">
                 <!-- Replace these image paths with your own -->
-                <img src="../Zimmer\Hotel924-Celle236.jpg"
-                    alt="Einer unserer bequemen Doppelzimmer / One of our comfortable double rooms">
-                <img src="../Zimmer/Hotel924-Celle210.jpg"
-                    alt="Ein weiteres unserer bequemen Doppelzimmer / Another one of our comfortable double rooms">
-                <img src="../Zimmer/Hotel924-Celle208.jpg"
-                    alt="Ein weiteres schönes Doppelzimmer / Another cozy double room">
-                <img src="../Zimmer/Hotel924-Celle260.jpg"
-                    alt="Unser schönes Doppelzimmer mit getrennten Betten / Our beautiful double room with separate beds">
+                <img src="../Zimmer/Hotel924-Celle236.jpg" srcset="../optimized_images/Zimmer/Hotel924-Celle236.webp"
+                    sizes="100vw" alt="Einer unserer bequemen Doppelzimmer / One of our comfortable double rooms"
+                    loading="lazy" decoding="async">
+                <img src="../Zimmer/Hotel924-Celle210.jpg" srcset="../optimized_images/Zimmer/Hotel924-Celle210.webp"
+                    sizes="100vw"
+                    alt="Ein weiteres unserer bequemen Doppelzimmer / Another one of our comfortable double rooms"
+                    loading="lazy" decoding="async">
+                <img src="../Zimmer/Hotel924-Celle208.jpg" srcset="../optimized_images/Zimmer/Hotel924-Celle208.webp"
+                    sizes="100vw" alt="Ein weiteres schönes Doppelzimmer / Another cozy double room" loading="lazy"
+                    decoding="async">
+                <img src="../Zimmer/Hotel924-Celle260.jpg" srcset="../optimized_images/Zimmer/Hotel924-Celle260.webp"
+                    sizes="100vw"
+                    alt="Unser schönes Doppelzimmer mit getrennten Betten / Our beautiful double room with separate beds"
+                    loading="lazy" decoding="async">
             </div>
             <!-- Navigation arrows -->
             <div class="carousel-arrows">
@@ -127,14 +145,21 @@
             <!-- Carousel track with images -->
             <div class="carousel-track">
                 <!-- Replace these image paths with your own -->
-                <img src="../Zimmer/Hotel924-Celle220.jpg"
-                    alt="Eines unserer gemütlichen Familienzimmer / One of our cozy family rooms">
-                <img src="../Zimmer\Hotel924-Celle205.jpg"
-                    alt="Eines unserer Mehrbettzimmer für bis zu 4 Personen / One of our multi-bed rooms for up to 4 people">
-                <img src="../Zimmer/Hotel924-Celle230.jpg"
-                    alt="Ein weiteres unserer herzlichen Familienzimmer / Another of our comfortable family rooms">
-                <img src="../Zimmer/Hotel924-Celle218.jpg"
-                    alt="Unsere familienfreundliche Zimmer für groß und klein / Our family-friendly rooms for young and old">
+                <img src="../Zimmer/Hotel924-Celle220.jpg" srcset="../optimized_images/Zimmer/Hotel924-Celle220.webp"
+                    sizes="100vw" alt="Eines unserer gemütlichen Familienzimmer / One of our cozy family rooms"
+                    loading="lazy" decoding="async">
+                <img src="../Zimmer/Hotel924-Celle205.jpg" srcset="../optimized_images/Zimmer/Hotel924-Celle205.webp"
+                    sizes="100vw"
+                    alt="Eines unserer Mehrbettzimmer für bis zu 4 Personen / One of our multi-bed rooms for up to 4 people"
+                    loading="lazy" decoding="async">
+                <img src="../Zimmer/Hotel924-Celle230.jpg" srcset="../optimized_images/Zimmer/Hotel924-Celle230.webp"
+                    sizes="100vw"
+                    alt="Ein weiteres unserer herzlichen Familienzimmer / Another of our comfortable family rooms"
+                    loading="lazy" decoding="async">
+                <img src="../Zimmer/Hotel924-Celle218.jpg" srcset="../optimized_images/Zimmer/Hotel924-Celle218.webp"
+                    sizes="100vw"
+                    alt="Unsere familienfreundliche Zimmer für groß und klein / Our family-friendly rooms for young and old"
+                    loading="lazy" decoding="async">
             </div>
             <!-- Navigation arrows -->
             <div class="carousel-arrows">
@@ -148,14 +173,18 @@
             <!-- Carousel track with images -->
             <div class="carousel-track">
                 <!-- Replace these image paths with your own -->
-                <img src="../general_photos/Eingang.jpg"
+                <img src="../general_photos/Eingang.jpg" srcset="../optimized_images/Eingang.webp" sizes="100vw"
                     alt="Unser Hotel-Eingang - wussten Sie, dass dieses Gebäude vor dem ersten Weltkrieg gebaut wurde
-                    und kürzlich erst renoviert wurde? / Our hotel entrance - did you know that this building was built before the first world war and has just been renovated?">
-                <img src="../general_photos/Sitze_lobby2.jpg"
-                    alt="Ruhen Sie sich aus auf unseren bequemen Bambus-Sessel in der Lobby / Relax in our comfortable bamboo chairs in the lobby">
-                <img src="../general_photos/Treppenhaus.jpg" alt="Unser Treppenhaus gleicht einem Galeriegang in die magische Welt von Harry Potter / Our staircase resembles a gallery corridor 
-                    into the magical world of Harry Potter">
-                <img src="../general_photos/Individuels-Design.jpg" alt="Unser schöner Gang / Our beautiful hallway">
+                    und kürzlich erst renoviert wurde? / Our hotel entrance - did you know that this building was built before the first world war and has just been renovated?" loading="lazy" decoding="async">
+                <img src="../general_photos/Sitze_lobby2.jpg" srcset="../optimized_images/Sitze_lobby2.webp"
+                    sizes="100vw"
+                    alt="Ruhen Sie sich aus auf unseren bequemen Bambus-Sessel in der Lobby / Relax in our comfortable bamboo chairs in the lobby"
+                    loading="lazy" decoding="async">
+                <img src="../general_photos/Treppenhaus.jpg" srcset="../optimized_images/Treppenhaus.webp" sizes="100vw"
+                    alt="Unser Treppenhaus gleicht einem Galeriegang in die magische Welt von Harry Potter / Our staircase resembles a gallery corridor 
+                    into the magical world of Harry Potter" loading="lazy" decoding="async">
+                <img src="../general_photos/Individuels-Design.jpg" srcset="../optimized_images/Individuels-Design.webp"
+                    sizes="100vw" alt="Unser schöner Gang / Our beautiful hallway" loading="lazy" decoding="async">
             </div>
             <!-- Navigation arrows -->
             <div class="carousel-arrows">
