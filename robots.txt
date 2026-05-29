@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://www.hotel934.de/sitemap.xml

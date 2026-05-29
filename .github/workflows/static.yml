@@ -33,11 +33,66 @@ jobs:
         uses: actions/checkout@v4
       - name: Setup Pages
         uses: actions/configure-pages@v5
+      - name: Build publish folder
+        run: |
+          set -e
+          mkdir -p public
+          cp -a index.html index.css index.js robots.txt sitemap.xml CNAME public/
+          mkdir -p public/entdecken-discover public/preise-prices public/impressum-imprint public/anfrage-inquiry
+          cp -a entdecken-discover/index.html entdecken-discover/new.css entdecken-discover/new.js public/entdecken-discover/
+          cp -a preise-prices/index.html public/preise-prices/
+          cp -a anfrage-inquiry/index.html public/anfrage-inquiry/
+          cp -a impressum-imprint/index.html public/impressum-imprint/
+          cp -a "impressum-imprint/Opera Momentaufnahme_2025-05-09_204338_www.hotel934.de.png" public/impressum-imprint/
+          mkdir -p public/general_photos public/optimized_images public/optimized_images/Zimmer public/Zimmer
+          cp -a general_photos/logo.png public/general_photos/
+          cp -a general_photos/vonaussen.jpg public/general_photos/
+          cp -a general_photos/Eingang.jpg public/general_photos/
+          cp -a general_photos/Sitze_lobby2.jpg public/general_photos/
+          cp -a general_photos/Treppenhaus.jpg public/general_photos/
+          cp -a general_photos/Individuels-Design.jpg public/general_photos/
+          cp -a general_photos/cards.avif public/general_photos/
+          cp -a "general_photos/Hotel924-Celle253 copy (1).jpg" public/general_photos/
+          cp -a optimized_images/logo.webp public/optimized_images/
+          cp -a optimized_images/vonaussen.webp public/optimized_images/
+          cp -a optimized_images/Eingang.webp public/optimized_images/
+          cp -a optimized_images/Sitze_lobby2.webp public/optimized_images/
+          cp -a optimized_images/Treppenhaus.webp public/optimized_images/
+          cp -a optimized_images/Individuels-Design.webp public/optimized_images/
+          cp -a "optimized_images/Hotel924-Celle253 copy (1).webp" public/optimized_images/
+          cp -a Zimmer/Hotel924-Celle205.jpg public/Zimmer/
+          cp -a Zimmer/Hotel924-Celle208.jpg public/Zimmer/
+          cp -a Zimmer/Hotel924-Celle210.jpg public/Zimmer/
+          cp -a Zimmer/Hotel924-Celle218.jpg public/Zimmer/
+          cp -a Zimmer/Hotel924-Celle220.jpg public/Zimmer/
+          cp -a Zimmer/Hotel924-Celle230.jpg public/Zimmer/
+          cp -a Zimmer/Hotel924-Celle236.jpg public/Zimmer/
+          cp -a Zimmer/Hotel924-Celle260.jpg public/Zimmer/
+          cp -a Zimmer/Hotel924-Celle273.jpg public/Zimmer/
+          cp -a Zimmer/Hotel924-Celle278.jpg public/Zimmer/
+          cp -a Zimmer/Hotel924-Celle279.jpg public/Zimmer/
+          cp -a Zimmer/Hotel924-Celle283.jpg public/Zimmer/
+          cp -a Zimmer/Hotel924-Celle286.jpg public/Zimmer/
+          cp -a Zimmer/Hotel924-Celle289.jpg public/Zimmer/
+          cp -a optimized_images/Zimmer/Hotel924-Celle205.webp public/optimized_images/Zimmer/
+          cp -a optimized_images/Zimmer/Hotel924-Celle208.webp public/optimized_images/Zimmer/
+          cp -a optimized_images/Zimmer/Hotel924-Celle210.webp public/optimized_images/Zimmer/
+          cp -a optimized_images/Zimmer/Hotel924-Celle218.webp public/optimized_images/Zimmer/
+          cp -a optimized_images/Zimmer/Hotel924-Celle220.webp public/optimized_images/Zimmer/
+          cp -a optimized_images/Zimmer/Hotel924-Celle230.webp public/optimized_images/Zimmer/
+          cp -a optimized_images/Zimmer/Hotel924-Celle236.webp public/optimized_images/Zimmer/
+          cp -a optimized_images/Zimmer/Hotel924-Celle260.webp public/optimized_images/Zimmer/
+          cp -a optimized_images/Zimmer/Hotel924-Celle273.webp public/optimized_images/Zimmer/
+          cp -a optimized_images/Zimmer/Hotel924-Celle278.webp public/optimized_images/Zimmer/
+          cp -a optimized_images/Zimmer/Hotel924-Celle279.webp public/optimized_images/Zimmer/
+          cp -a optimized_images/Zimmer/Hotel924-Celle283.webp public/optimized_images/Zimmer/
+          cp -a optimized_images/Zimmer/Hotel924-Celle286.webp public/optimized_images/Zimmer/
+          cp -a optimized_images/Zimmer/Hotel924-Celle289.webp public/optimized_images/Zimmer/
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
-          # Upload entire repository
-          path: '.'
+          # Upload curated publish folder
+          path: "./public"
       - name: Deploy to GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v4
